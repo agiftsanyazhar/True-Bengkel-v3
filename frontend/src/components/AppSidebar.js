@@ -36,7 +36,7 @@ const AppSidebar = () => {
           {/* <Link to={'tambah'} className="button is-primary">
             Tambah
           </Link> */}
-          <a href="">TB</a>
+          <a href="">True Bengkel</a>
         </CSidebarBrand>
         <CCloseButton
           className="d-lg-none"
