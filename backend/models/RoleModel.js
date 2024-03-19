@@ -7,7 +7,9 @@ const DataTypes = Sequelize;
 const Role = db.define(
   "roles",
   {
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+    },
   },
   {
     freezeTableName: true,

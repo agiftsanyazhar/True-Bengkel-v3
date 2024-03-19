@@ -1,12 +1,15 @@
-import React, { useEffect, useRef } from 'react'
+import { React, useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import { CRow, CCol, CWidgetStatsA } from '@coreui/react'
 import { getStyle } from '@coreui/utils'
 
+import axios from 'axios'
+
 const WidgetsDropdown = (props) => {
   const widgetChartRef1 = useRef(null)
   const widgetChartRef2 = useRef(null)
+  const [userCount, setUserCount] = useState(0)
 
   useEffect(() => {
     document.documentElement.addEventListener('ColorSchemeChange', () => {
@@ -23,8 +26,14 @@ const WidgetsDropdown = (props) => {
           widgetChartRef2.current.update()
         })
       }
-    })
+    }),
+      getUsers()
   }, [widgetChartRef1, widgetChartRef2])
+
+  const getUsers = async () => {
+    const response = await axios.get('http://localhost:5000/user')
+    setUserCount(response.data.length)
+  }
 
   return (
     <CRow className={props.className} xs={{ gutter: 4 }}>
@@ -40,7 +49,7 @@ const WidgetsDropdown = (props) => {
         <CWidgetStatsA color="info" value={<>3 </>} className="pb-4" title="Total Pesanan" />
       </CCol>
       <CCol sm={6} xl={4} xxl={4}>
-        <CWidgetStatsA color="warning" value={<>6 </>} className="pb-4" title="Total User" />
+        <CWidgetStatsA color="warning" value={userCount} className="pb-4" title="Total User" />
       </CCol>
     </CRow>
   )

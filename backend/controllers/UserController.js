@@ -1,8 +1,14 @@
 import User from "../models/UserModel.js";
+import Role from "../models/RoleModel.js";
 
 export const getUsers = async (req, res) => {
   try {
-    const response = await User.findAll();
+    const response = await User.findAll({
+      include: {
+        model: Role,
+        as: "role",
+      },
+    });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
@@ -15,7 +21,20 @@ export const getUserById = async (req, res) => {
       where: {
         id: req.params.id,
       },
+      include: {
+        model: Role,
+        as: "role",
+      },
     });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const countUser = async (req, res) => {
+  try {
+    const response = await User.count();
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);

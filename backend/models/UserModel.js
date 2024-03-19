@@ -6,10 +6,18 @@ const DataTypes = Sequelize;
 const User = db.define(
   "users",
   {
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role_id: DataTypes.INTEGER,
+    name: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+    },
+    password: {
+      type: DataTypes.STRING,
+    },
+    role_id: {
+      type: DataTypes.INTEGER,
+    },
   },
   {
     freezeTableName: true,
