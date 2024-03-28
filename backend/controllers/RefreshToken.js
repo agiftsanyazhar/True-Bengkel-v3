@@ -9,13 +9,13 @@ export const refreshToken = async (req, res) => {
       return res.sendStatus(401);
     }
 
-    const user = await User.findAll({
+    const user = await User.findOne({
       where: {
         refresh_token: refreshToken,
       },
     });
 
-    if (!user[0]) {
+    if (!user) {
       return res.sendStatus(403);
     }
 
@@ -27,13 +27,13 @@ export const refreshToken = async (req, res) => {
           return res.sendStatus(403);
         }
 
-        const userId = user[0].id;
-        const userName = user[0].name;
-        const userEmail = user[0].email;
-        const accessToken = jwst.sign(
+        const userId = user.id;
+        const userName = user.name;
+        const userEmail = user.email;
+        const accessToken = jwt.sign(
           { userId, userName, userEmail },
           process.env.ACCESS_TOKEN_SECRET,
-          { expiresIn: "20s" }
+          { expiresIn: "15s" }
         );
         res.json({ accessToken });
       }

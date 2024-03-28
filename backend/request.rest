@@ -36,7 +36,7 @@ Content-Type: application/json
 ####################
 ###
 GET http://localhost:5000/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJ1c2VyTmFtZSI6IkFkbWluIDIiLCJ1c2VyRW1haWwiOiJhZG1pbjJAZ21haWwuY29tIiwiaWF0IjoxNzExNTUzOTY2LCJleHAiOjE3MTE1NTM5ODZ9.YBmJ_lWdsut499baXM0OFyy1bsjhtVB9O4hqK0QzGD8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJOYW1lIjoiQWRtaW4iLCJ1c2VyRW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTE2MDU4MzQsImV4cCI6MTcxMTYwNTg0OX0.O2QjPkPW0ohZ9W0IVPQEjQWujULjgXKuX89b0C1jtJo
 
 ###
 GET http://localhost:5000/user/1
@@ -57,8 +57,8 @@ POST  http://localhost:5000/user/register
 Content-Type: application/json
 
 {
-    "name": "Admin 2",
-    "email": "admin2@gmail.com",
+    "name": "Admin",
+    "email": "admin@gmail.com",
     "password": "12345678",
     "rePassword": "12345678",
     "role_id": 1
@@ -69,7 +69,7 @@ POST  http://localhost:5000/user/login
 Content-Type: application/json
 
 {
-    "email": "admin2@gmail.com",
+    "email": "admin@gmail.com",
     "password": "12345678"
 }
 

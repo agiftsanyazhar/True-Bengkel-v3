@@ -18,6 +18,9 @@ const User = db.define(
     role_id: {
       type: DataTypes.INTEGER,
     },
+    refresh_token: {
+      type: DataTypes.TEXT,
+    },
   },
   {
     freezeTableName: true,

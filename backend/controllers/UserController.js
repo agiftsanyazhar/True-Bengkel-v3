@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 export const getUsers = async (req, res) => {
   try {
     const response = await User.findAll({
-      attributes: ["id", "name", "email"],
+      attributes: ["id", "name", "email", "createdAt", "updatedAt"],
       include: {
         model: Role,
         as: "role",
@@ -46,13 +46,13 @@ export const countUser = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const user = await User.findAll({
+    const user = await User.findOne({
       where: {
         email: req.body.email,
       },
     });
 
-    const match = await bcrypt.compare(req.body.password, user[0].password);
+    const match = await bcrypt.compare(req.body.password, user.password);
 
     if (!match) {
       return res
@@ -60,13 +60,13 @@ export const login = async (req, res) => {
         .json({ msg: "These credentials do not match our records." });
     }
 
-    const userId = user[0].id;
-    const userName = user[0].name;
-    const userEmail = user[0].email;
+    const userId = user.id;
+    const userName = user.name;
+    const userEmail = user.email;
     const accessToken = jwt.sign(
       { userId, userName, userEmail },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "20s" }
+      { expiresIn: "15s" }
     );
     const refreshToken = jwt.sign(
       { userId, userName, userEmail },
