@@ -16,7 +16,14 @@ const User = db.define(
       type: DataTypes.STRING,
     },
     role_id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: {
+        model: "roles", // This should match the name of your Role model
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE",
     },
     refresh_token: {
       type: DataTypes.TEXT,

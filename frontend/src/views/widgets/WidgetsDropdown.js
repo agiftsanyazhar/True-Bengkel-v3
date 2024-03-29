@@ -49,7 +49,12 @@ const WidgetsDropdown = (props) => {
         <CWidgetStatsA color="info" value={<>3 </>} className="pb-4" title="Total Pesanan" />
       </CCol>
       <CCol sm={6} xl={4} xxl={4}>
-        <CWidgetStatsA color="warning" value={userCount} className="pb-4" title="Total User" />
+        <CWidgetStatsA
+          color="warning"
+          value={userCount === 0 ? '0' : userCount}
+          className="pb-4"
+          title="Total User"
+        />
       </CCol>
     </CRow>
   )
