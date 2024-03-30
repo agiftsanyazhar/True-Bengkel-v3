@@ -2,6 +2,31 @@ import User from "../models/UserModel.js";
 import Role from "../models/RoleModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { where } from "sequelize";
+
+export const register = async (req, res) => {
+  const { name, email, password, rePassword, role_id } = req.body;
+
+  if (password !== rePassword) {
+    return res.status(400).json({ msg: "Password do not match!" });
+  }
+
+  const salt = await bcrypt.genSalt();
+  const hashPassword = await bcrypt.hash(password, salt);
+
+  try {
+    await User.create({
+      name: name,
+      email: email,
+      password: hashPassword,
+      role_id: role_id,
+    });
+
+    res.status(201).json({ msg: "User created!" });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 export const login = async (req, res) => {
   try {
@@ -56,28 +81,37 @@ export const login = async (req, res) => {
   }
 };
 
-export const register = async (req, res) => {
-  const { name, email, password, rePassword, role_id } = req.body;
+export const logout = async (req, res) => {
+  const refreshToken = req.cookies.refreshToken;
 
-  if (password !== rePassword) {
-    return res.status(400).json({ msg: "Password do not match!" });
+  if (!refreshToken) {
+    return res.sendStatus(204);
   }
 
-  const salt = await bcrypt.genSalt();
-  const hashPassword = await bcrypt.hash(password, salt);
+  const user = await User.findOne({
+    where: {
+      refresh_token: refreshToken,
+    },
+  });
 
-  try {
-    await User.create({
-      name: name,
-      email: email,
-      password: hashPassword,
-      role_id: role_id,
-    });
-
-    res.status(201).json({ msg: "User created!" });
-  } catch (error) {
-    console.log(error.message);
+  if (!user) {
+    return res.sendStatus(204);
   }
+
+  const userId = user.id;
+
+  await User.update(
+    { refresh_token: null },
+    {
+      where: {
+        id: userId,
+      },
+    }
+  );
+
+  res.clearCookie("refreshToken");
+
+  return res.sendStatus(200);
 };
 
 export const getUsers = async (req, res) => {

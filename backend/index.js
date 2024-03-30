@@ -10,6 +10,10 @@ import UserRoute from "./routes/UserRoute.js";
 dotenv.config();
 
 const app = express();
+const corsOptions = {
+  credentials: true,
+  origin: ["http://localhost:3000"],
+};
 
 try {
   await db.authenticate();
@@ -19,7 +23,7 @@ try {
 }
 
 app.use(cookieParser());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(RoleRoute);
 app.use(JabatanRoute);
