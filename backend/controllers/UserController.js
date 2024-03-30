@@ -3,47 +3,6 @@ import Role from "../models/RoleModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export const getUsers = async (req, res) => {
-  try {
-    const response = await User.findAll({
-      attributes: ["id", "name", "email", "createdAt", "updatedAt"],
-      include: {
-        model: Role,
-        as: "role",
-      },
-    });
-    res.status(200).json(response);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-export const getUserById = async (req, res) => {
-  try {
-    const response = await User.findOne({
-      where: {
-        id: req.params.id,
-      },
-      include: {
-        model: Role,
-        as: "role",
-      },
-    });
-    res.status(200).json(response);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-export const countUser = async (req, res) => {
-  try {
-    const response = await User.count();
-    res.status(200).json(response);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
 export const login = async (req, res) => {
   try {
     const user = await User.findOne({
@@ -121,10 +80,43 @@ export const register = async (req, res) => {
   }
 };
 
-export const createUser = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
-    await User.create(req.body);
-    res.status(201).json({ msg: "User created!" });
+    const response = await User.findAll({
+      attributes: ["id", "name", "email", "createdAt", "updatedAt"],
+      include: {
+        model: Role,
+        as: "role",
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getUserById = async (req, res) => {
+  try {
+    const response = await User.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["id", "name", "email", "createdAt", "updatedAt"],
+      include: {
+        model: Role,
+        as: "role",
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const countUser = async (req, res) => {
+  try {
+    const response = await User.count();
+    res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
   }

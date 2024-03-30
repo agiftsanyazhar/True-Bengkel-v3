@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 export const refreshToken = async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken;
+    console.log("refresh token:", refreshToken);
 
     if (!refreshToken) {
       return res.sendStatus(401);
@@ -14,6 +15,7 @@ export const refreshToken = async (req, res) => {
         refresh_token: refreshToken,
       },
     });
+    console.log("user:", user);
 
     if (!user) {
       return res.sendStatus(403);
@@ -23,6 +25,8 @@ export const refreshToken = async (req, res) => {
       refreshToken,
       process.env.REFRESH_TOKEN_SECRET,
       (err, decoded) => {
+        console.log("err:", err);
+        console.log("decoded:", decoded);
         if (err) {
           return res.sendStatus(403);
         }
