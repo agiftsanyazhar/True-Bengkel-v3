@@ -6,6 +6,8 @@ import db from "./config/database.js";
 import RoleRoute from "./routes/RoleRoute.js";
 import JabatanRoute from "./routes/JabatanRoute.js";
 import UserRoute from "./routes/UserRoute.js";
+import AdminRoute from "./routes/AdminRoute.js";
+import AuthRoute from "./routes/AuthRoute.js";
 
 dotenv.config();
 
@@ -28,5 +30,7 @@ app.use(express.json());
 app.use(RoleRoute);
 app.use(JabatanRoute);
 app.use(UserRoute);
+app.use(AdminRoute);
+app.use(AuthRoute);
 
 app.listen(5000, () => console.log("Listening on port 5000..."));

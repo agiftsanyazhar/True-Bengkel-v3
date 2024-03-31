@@ -9,6 +9,7 @@ const Role = db.define(
   {
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
@@ -16,8 +17,7 @@ const Role = db.define(
   }
 );
 
-export { Role }; // Export Role model
-
+export { Role };
 Role.hasMany(User, { foreignKey: "role_id" });
 
 export default Role;

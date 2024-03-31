@@ -1,11 +1,10 @@
 import Sequelize from "sequelize";
 import db from "../config/database.js";
-import Admin from "./AdminModel.js";
 
 const DataTypes = Sequelize;
 
-const User = db.define(
-  "users",
+const Admin = db.define(
+  "admins",
   {
     name: {
       type: DataTypes.STRING,
@@ -15,22 +14,15 @@ const User = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    role_id: {
+    user_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: "roles",
+        model: "users",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "CASCADE",
-    },
-    refresh_token: {
-      type: DataTypes.TEXT,
     },
   },
   {
@@ -38,15 +30,12 @@ const User = db.define(
   }
 );
 
-export { User };
-User.hasMany(Admin, { foreignKey: "user_id" });
+export default Admin;
 
-export default User;
-
-import { Role } from "./RoleModel.js";
+import { User } from "./UserModel.js";
 
 (async () => {
   await db.sync();
 
-  User.belongsTo(Role, { foreignKey: "role_id" });
+  Admin.belongsTo(User, { foreignKey: "user_id" });
 })();
