@@ -18,6 +18,7 @@ const Role = db.define(
 );
 
 export { Role };
+
 Role.hasMany(User, { foreignKey: "role_id" });
 
 export default Role;

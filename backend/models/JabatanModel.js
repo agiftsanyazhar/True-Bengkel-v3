@@ -25,8 +25,14 @@ const Jabatan = db.define(
   }
 );
 
+export { Jabatan };
+
 export default Jabatan;
 
 (async () => {
+  const Pegawai = (await import("./PegawaiModel.js")).default;
+
   await db.sync();
+
+  Jabatan.hasMany(Pegawai, { foreignKey: "jabatan_id" });
 })();

@@ -5,7 +5,7 @@ import {
   createJabatan,
   updateJabatan,
   deleteJabatan,
-} from "../controllers/admin/masterdata/JabatanController.js";
+} from "../controllers/masterdata/JabatanController.js";
 
 const router = express.Router();
 

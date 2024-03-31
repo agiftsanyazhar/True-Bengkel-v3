@@ -1,4 +1,4 @@
-import Jabatan from "../../../models/JabatanModel.js";
+import Jabatan from "../../models/JabatanModel.js";
 
 export const getJabatans = async (req, res) => {
   try {

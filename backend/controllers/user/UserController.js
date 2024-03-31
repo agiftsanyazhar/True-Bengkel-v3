@@ -1,6 +1,6 @@
-import Role from "../../../models/RoleModel.js";
-import User from "../../../models/UserModel.js";
-import Admin from "../../../models/AdminModel.js";
+import Role from "../../models/RoleModel.js";
+import User from "../../models/UserModel.js";
+import Admin from "../../models/AdminModel.js";
 import bcrypt from "bcrypt";
 
 export const getUsers = async (req, res) => {

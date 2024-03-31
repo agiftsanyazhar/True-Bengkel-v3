@@ -7,6 +7,11 @@ import RoleRoute from "./routes/RoleRoute.js";
 import JabatanRoute from "./routes/JabatanRoute.js";
 import UserRoute from "./routes/UserRoute.js";
 import AdminRoute from "./routes/AdminRoute.js";
+import PegawaiRoute from "./routes/PegawaiRoute.js";
+import PelangganRoute from "./routes/PelangganRoute.js";
+import TipeMotorRoute from "./routes/TipeMotorRoute.js";
+import SparePartRoute from "./routes/SparePartRoute.js";
+import KendaraanRoute from "./routes/KendaraanRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 
 dotenv.config();
@@ -31,6 +36,11 @@ app.use(RoleRoute);
 app.use(JabatanRoute);
 app.use(UserRoute);
 app.use(AdminRoute);
+app.use(PegawaiRoute);
+app.use(PelangganRoute);
+app.use(TipeMotorRoute);
+app.use(SparePartRoute);
+app.use(KendaraanRoute);
 app.use(AuthRoute);
 
 app.listen(5000, () => console.log("Listening on port 5000..."));

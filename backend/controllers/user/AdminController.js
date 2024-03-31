@@ -1,5 +1,5 @@
-import User from "../../../models/UserModel.js";
-import Admin from "../../../models/AdminModel.js";
+import User from "../../models/UserModel.js";
+import Admin from "../../models/AdminModel.js";
 
 export const getAdmins = async (req, res) => {
   try {
@@ -8,7 +8,14 @@ export const getAdmins = async (req, res) => {
       include: {
         model: User,
         as: "user",
-        attributes: ["id", "name", "email", "createdAt", "updatedAt"],
+        attributes: [
+          "id",
+          "name",
+          "email",
+          "role_id",
+          "createdAt",
+          "updatedAt",
+        ],
       },
     });
     res.status(200).json(response);
@@ -27,7 +34,14 @@ export const getAdminById = async (req, res) => {
       include: {
         model: User,
         as: "user",
-        attributes: ["id", "name", "email", "createdAt", "updatedAt"],
+        attributes: [
+          "id",
+          "name",
+          "email",
+          "role_id",
+          "createdAt",
+          "updatedAt",
+        ],
       },
     });
     res.status(200).json(response);

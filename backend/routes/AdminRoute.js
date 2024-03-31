@@ -2,7 +2,7 @@ import express from "express";
 import {
   getAdmins,
   getAdminById,
-} from "../controllers/admin/user/AdminController.js";
+} from "../controllers/user/AdminController.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();

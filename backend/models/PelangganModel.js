@@ -1,13 +1,11 @@
 import Sequelize from "sequelize";
 import db from "../config/database.js";
-import Admin from "./AdminModel.js";
-import Pegawai from "./PegawaiModel.js";
-import Pelanggan from "./PelangganModel.js";
+import Kendaraan from "./KendaraanModel.js";
 
 const DataTypes = Sequelize;
 
-const User = db.define(
-  "users",
+const Pelanggan = db.define(
+  "pelanggans",
   {
     name: {
       type: DataTypes.STRING,
@@ -17,22 +15,23 @@ const User = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
+    phone: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    role_id: {
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    user_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: "roles",
+        model: "users",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "CASCADE",
-    },
-    refresh_token: {
-      type: DataTypes.TEXT,
     },
   },
   {
@@ -40,18 +39,16 @@ const User = db.define(
   }
 );
 
-export { User };
+export { Pelanggan };
 
-User.hasMany(Admin, { foreignKey: "user_id" });
-User.hasMany(Pegawai, { foreignKey: "user_id" });
-User.hasMany(Pelanggan, { foreignKey: "user_id" });
+Pelanggan.hasMany(Kendaraan, { foreignKey: "pelanggan_id" });
 
-export default User;
+export default Pelanggan;
 
-import { Role } from "./RoleModel.js";
+import { User } from "./UserModel.js";
 
 (async () => {
   await db.sync();
 
-  User.belongsTo(Role, { foreignKey: "role_id" });
+  Pelanggan.belongsTo(User, { foreignKey: "user_id" });
 })();
