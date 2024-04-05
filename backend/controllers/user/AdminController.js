@@ -4,7 +4,7 @@ import Admin from "../../models/AdminModel.js";
 export const getAdmins = async (req, res) => {
   try {
     const response = await Admin.findAll({
-      attributes: ["id", "name", "email", "createdAt", "updatedAt"],
+      attributes: ["id", "name", "email", "user_id", "createdAt", "updatedAt"],
       include: {
         model: User,
         as: "user",
@@ -30,7 +30,7 @@ export const getAdminById = async (req, res) => {
       where: {
         id: req.params.id,
       },
-      attributes: ["id", "name", "email", "createdAt", "updatedAt"],
+      attributes: ["id", "name", "email", "user_id", "createdAt", "updatedAt"],
       include: {
         model: User,
         as: "user",

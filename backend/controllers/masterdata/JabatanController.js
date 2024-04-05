@@ -1,3 +1,4 @@
+import { check, validationResult } from "express-validator";
 import Jabatan from "../../models/JabatanModel.js";
 
 export const getJabatans = async (req, res) => {
@@ -23,7 +24,28 @@ export const getJabatanById = async (req, res) => {
 };
 
 export const createJabatan = async (req, res) => {
+  const { name } = req.body;
+
   try {
+    const checks = [
+      check("name", "Name is required").notEmpty(),
+      check("gaji_pokok", "Gaji Pokok is required").notEmpty().isNumeric(),
+      check("tunjangan", "Tunjangan is required").notEmpty().isNumeric(),
+    ];
+
+    const errors = validationResult(
+      await Promise.all(checks.map((check) => check.run(req)))
+    );
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const existingJabatan = await Jabatan.findOne({ where: { name } });
+    if (existingJabatan) {
+      return res.status(400).json({ msg: "Jabatan already exists!" });
+    }
+
     await Jabatan.create(req.body);
     res.status(201).json({ msg: "Jabatan created!" });
   } catch (error) {
@@ -32,7 +54,28 @@ export const createJabatan = async (req, res) => {
 };
 
 export const updateJabatan = async (req, res) => {
+  const { name } = req.body;
+
   try {
+    const checks = [
+      check("name", "Name is required").notEmpty(),
+      check("gaji_pokok", "Gaji Pokok is required").notEmpty().isNumeric(),
+      check("tunjangan", "Tunjangan is required").notEmpty().isNumeric(),
+    ];
+
+    const errors = validationResult(
+      await Promise.all(checks.map((check) => check.run(req)))
+    );
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const existingJabatan = await Jabatan.findOne({ where: { name } });
+    if (existingJabatan) {
+      return res.status(400).json({ msg: "Jabatan already exists!" });
+    }
+
     await Jabatan.update(req.body, {
       where: {
         id: req.params.id,

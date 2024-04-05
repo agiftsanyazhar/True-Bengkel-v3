@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 export const getUsers = async (req, res) => {
   try {
     const response = await User.findAll({
-      attributes: ["id", "name", "email", "createdAt", "updatedAt"],
+      attributes: ["id", "name", "email", "role_id", "createdAt", "updatedAt"],
       include: {
         model: Role,
         as: "role",
@@ -24,7 +24,7 @@ export const getUserById = async (req, res) => {
       where: {
         id: req.params.id,
       },
-      attributes: ["id", "name", "email", "createdAt", "updatedAt"],
+      attributes: ["id", "name", "email", "role_id", "createdAt", "updatedAt"],
       include: {
         model: Role,
         as: "role",

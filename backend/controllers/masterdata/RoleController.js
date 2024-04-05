@@ -1,3 +1,4 @@
+import { check, validationResult } from "express-validator";
 import Role from "../../models/RoleModel.js";
 
 export const getRoles = async (req, res) => {
@@ -23,7 +24,24 @@ export const getRoleById = async (req, res) => {
 };
 
 export const createRole = async (req, res) => {
+  const { name } = req.body;
+
   try {
+    const checks = [check("name", "Name is required").notEmpty()];
+
+    const errors = validationResult(
+      await Promise.all(checks.map((check) => check.run(req)))
+    );
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const existingRole = await Role.findOne({ where: { name } });
+    if (existingRole) {
+      return res.status(400).json({ msg: "Role already exists!" });
+    }
+
     await Role.create(req.body);
     res.status(201).json({ msg: "Role created!" });
   } catch (error) {
@@ -32,7 +50,24 @@ export const createRole = async (req, res) => {
 };
 
 export const updateRole = async (req, res) => {
+  const { name } = req.body;
+
   try {
+    const checks = [check("name", "Name is required").notEmpty()];
+
+    const errors = validationResult(
+      await Promise.all(checks.map((check) => check.run(req)))
+    );
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const existingRole = await Role.findOne({ where: { name } });
+    if (existingRole) {
+      return res.status(400).json({ msg: "Role already exists!" });
+    }
+
     await Role.update(req.body, {
       where: {
         id: req.params.id,
