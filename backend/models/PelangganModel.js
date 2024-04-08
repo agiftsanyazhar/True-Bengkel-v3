@@ -1,6 +1,7 @@
 import Sequelize from "sequelize";
 import db from "../config/database.js";
 import Kendaraan from "./KendaraanModel.js";
+import Order from "./OrderModel.js";
 
 const DataTypes = Sequelize;
 
@@ -42,6 +43,7 @@ const Pelanggan = db.define(
 export { Pelanggan };
 
 Pelanggan.hasMany(Kendaraan, { foreignKey: "pelanggan_id" });
+Pelanggan.hasMany(Order, { foreignKey: "pelanggan_id" });
 
 export default Pelanggan;
 

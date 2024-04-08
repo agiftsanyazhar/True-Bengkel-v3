@@ -10,11 +10,11 @@ const Jabatan = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    gaji_pokok: {
+    salary: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    tunjangan: {
+    allowance: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0,
