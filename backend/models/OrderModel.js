@@ -39,12 +39,17 @@ const Order = db.define(
   }
 );
 
+export { Order };
+
 export default Order;
 
 import { Pelanggan } from "./PelangganModel.js";
 
 (async () => {
+  const OrderDetail = (await import("./OrderDetailModel.js")).default;
+
   await db.sync();
 
   Order.belongsTo(Pelanggan, { foreignKey: "pelanggan_id" });
+  Order.hasMany(OrderDetail, { foreignKey: "order_id" });
 })();

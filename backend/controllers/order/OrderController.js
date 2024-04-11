@@ -1,14 +1,21 @@
 import { check, validationResult } from "express-validator";
 import Order from "../../models/OrderModel.js";
 import Pelanggan from "../../models/PelangganModel.js";
+import OrderDetail from "../../models/OrderDetailModel.js";
 
 export const getOrders = async (req, res) => {
   try {
     const response = await Order.findAll({
-      include: {
-        model: Pelanggan,
-        as: "pelanggan",
-      },
+      include: [
+        {
+          model: Pelanggan,
+          as: "pelanggan",
+        },
+        {
+          model: OrderDetail,
+          as: "order_details",
+        },
+      ],
     });
     res.status(200).json(response);
   } catch (error) {
@@ -26,6 +33,10 @@ export const getOrderById = async (req, res) => {
         {
           model: Pelanggan,
           as: "pelanggan",
+        },
+        {
+          model: OrderDetail,
+          as: "order_details",
         },
       ],
     });

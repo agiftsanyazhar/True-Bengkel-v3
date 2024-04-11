@@ -8,7 +8,7 @@ module.exports = {
         order_code: "ODR-27112023201348",
         pelanggan_id: 3,
         is_paid: 0,
-        total_shopping: 423000,
+        total_shopping: 601000,
         proof_of_payment:
           "backend/assets/img/proof-of-payment/bukti-pembayaran-1.jpg",
         createdAt: new Date(),
@@ -18,7 +18,7 @@ module.exports = {
         order_code: "ODR-28112023201348",
         pelanggan_id: 2,
         is_paid: 0,
-        total_shopping: 1650000,
+        total_shopping: 342000,
         proof_of_payment:
           "backend/assets/img/proof-of-payment/bukti-pembayaran-2.jpg",
         createdAt: new Date(),
@@ -28,7 +28,7 @@ module.exports = {
         order_code: "ODR-29112023201348",
         pelanggan_id: 3,
         is_paid: 0,
-        total_shopping: 1250000,
+        total_shopping: 408000,
         proof_of_payment:
           "backend/assets/img/proof-of-payment/bukti-pembayaran-3.jpg",
         createdAt: new Date(),

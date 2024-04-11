@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -12,7 +13,7 @@ import {
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+import { cilLockLocked } from '@coreui/icons'
 
 const Register = () => {
   return (
@@ -23,14 +24,7 @@ const Register = () => {
             <CCard className="mx-4">
               <CCardBody className="p-4">
                 <CForm>
-                  <h1>Register</h1>
-                  <p className="text-body-secondary">Create your account</p>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>
-                      <CIcon icon={cilUser} />
-                    </CInputGroupText>
-                    <CFormInput placeholder="Username" autoComplete="username" />
-                  </CInputGroup>
+                  <h1 className="text-center">Register</h1>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
                     <CFormInput placeholder="Email" autoComplete="email" />
@@ -51,13 +45,20 @@ const Register = () => {
                     </CInputGroupText>
                     <CFormInput
                       type="password"
-                      placeholder="Repeat password"
+                      placeholder="Ulangi password"
                       autoComplete="new-password"
                     />
                   </CInputGroup>
-                  <div className="d-grid">
-                    <CButton color="success">Create Account</CButton>
-                  </div>
+                  <CRow className="text-center">
+                    <CCol>
+                      <CButton color="primary" className="px-4 mb-4">
+                        Register
+                      </CButton>
+                    </CCol>
+                    <p className="text-body-secondary">
+                      Sudah punya akun? <Link to="/">Login!</Link>
+                    </p>
+                  </CRow>
                 </CForm>
               </CCardBody>
             </CCard>

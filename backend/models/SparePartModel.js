@@ -1,5 +1,6 @@
 import Sequelize from "sequelize";
 import db from "../config/database.js";
+import OrderDetail from "./OrderDetailModel.js";
 
 const DataTypes = Sequelize;
 
@@ -47,6 +48,8 @@ const SparePart = db.define(
 );
 
 export { SparePart };
+
+SparePart.hasMany(OrderDetail, { foreignKey: "spare_part_id" });
 
 export default SparePart;
 

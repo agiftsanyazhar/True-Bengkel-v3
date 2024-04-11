@@ -33,9 +33,6 @@ const AppSidebar = () => {
     >
       <CSidebarHeader className="border-bottom">
         <CSidebarBrand to="/">
-          {/* <Link to={'tambah'} className="button is-primary">
-            Tambah
-          </Link> */}
           <a href="">True Bengkel</a>
         </CSidebarBrand>
         <CCloseButton

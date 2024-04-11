@@ -31,9 +31,9 @@ const Dashboard = () => {
   return (
     <>
       <WidgetsDropdown className="mb-4" />
-      <Link to={'tambah'} className="button is-primary">
+      {/* <Link to={'tambah'} className="button is-primary">
         Tambah
-      </Link>
+      </Link> */}
       <CRow>
         <CCol xs>
           <CCard className="mb-4">

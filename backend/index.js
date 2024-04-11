@@ -13,6 +13,7 @@ import TipeMotorRoute from "./routes/TipeMotorRoute.js";
 import SparePartRoute from "./routes/SparePartRoute.js";
 import KendaraanRoute from "./routes/KendaraanRoute.js";
 import OrderRoute from "./routes/OrderRoute.js";
+import OrderDetailRoute from "./routes/OrderDetailRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 
 dotenv.config();
@@ -43,6 +44,7 @@ app.use(TipeMotorRoute);
 app.use(SparePartRoute);
 app.use(KendaraanRoute);
 app.use(OrderRoute);
+app.use(OrderDetailRoute);
 app.use(AuthRoute);
 
 app.listen(5000, () => console.log("Listening on port 5000..."));
