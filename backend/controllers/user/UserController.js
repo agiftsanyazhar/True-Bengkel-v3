@@ -36,15 +36,6 @@ export const getUserById = async (req, res) => {
   }
 };
 
-export const countUser = async (req, res) => {
-  try {
-    const response = await User.count();
-    res.status(200).json(response);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
 export const updateUser = async (req, res) => {
   const { name, email, password, role_id } = req.body;
 

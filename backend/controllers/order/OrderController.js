@@ -46,6 +46,24 @@ export const getOrderById = async (req, res) => {
   }
 };
 
+export const countOrder = async (req, res) => {
+  try {
+    const response = await Order.count();
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const sumTotalIncome = async (req, res) => {
+  try {
+    const response = await Order.sum("total_shopping");
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const createOrder = async (req, res) => {
   const { order_code } = req.body;
 
