@@ -1,18 +1,33 @@
 import { check, validationResult } from "express-validator";
 import User from "../../models/UserModel.js";
 import Admin from "../../models/AdminModel.js";
+import Pegawai from "../../models/PegawaiModel.js";
+import Pelanggan from "../../models/PelangganModel.js";
 import bcrypt from "bcrypt";
 
 export const register = async (req, res) => {
-  const { name, email, password, rePassword, role_id } = req.body;
+  const {
+    role_id,
+    name,
+    email,
+    password,
+    rePassword,
+    phone,
+    address,
+    jabatan_id,
+  } = req.body;
 
   try {
     const checks = [
+      check("role_id", "Role is required").notEmpty().isNumeric(),
       check("name", "Name is required").notEmpty(),
       check("email", "Invalid email").notEmpty().isEmail(),
       check("password", "Password is required").notEmpty(),
       check("rePassword", "Confirm password is required").notEmpty(),
-      check("role_id", "Role is required").notEmpty().isNumeric(),
+
+      check("phone", "Phone is required").notEmpty().isMobilePhone("id-ID"),
+      check("address", "Address is required").notEmpty(),
+      check("jabatan_id", "Jabatan is required").notEmpty().isNumeric(),
     ];
 
     const errors = validationResult(
@@ -46,6 +61,23 @@ export const register = async (req, res) => {
       await Admin.create({
         name,
         email,
+        user_id: user.id,
+      });
+    } else if (role_id === 2) {
+      await Pegawai.create({
+        name,
+        email,
+        phone,
+        address,
+        user_id: user.id,
+        jabatan_id,
+      });
+    } else if (role_id === 3) {
+      await Pelanggan.create({
+        name,
+        email,
+        phone,
+        address,
         user_id: user.id,
       });
     }
