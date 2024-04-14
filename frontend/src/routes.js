@@ -3,9 +3,9 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 
 // Master
-const Jabatan = React.lazy(() => import('./views/jabatan/Jabatan'))
-const addJabatan = React.lazy(() => import('./views/jabatan/AddJabatan'))
-const editJabatan = React.lazy(() => import('./views/jabatan/EditJabatan'))
+const Jabatan = React.lazy(() => import('./views/master/data-master/jabatan/Jabatan'))
+const addJabatan = React.lazy(() => import('./views/master/data-master/jabatan/AddJabatan'))
+const editJabatan = React.lazy(() => import('./views/master/data-master/jabatan/EditJabatan'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },

@@ -16,7 +16,7 @@ import {
   CTableRow,
 } from '@coreui/react'
 
-import WidgetsDropdown from '../widgets/WidgetsDropdown'
+import WidgetsDropdown from './WidgetsDropdown'
 
 const Dashboard = () => {
   const [name, setName] = useState('')
