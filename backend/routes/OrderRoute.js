@@ -12,7 +12,7 @@ import { verifyToken } from "../middleware/verifyToken.js";
 const router = express.Router();
 
 router.get("/order", verifyToken, getOrders);
-router.get("/order/:id", verifyToken, getOrderById);
+router.get("/order/:id", getOrderById);
 router.get("/total-order", verifyToken, countOrder);
 router.get("/total-income", verifyToken, sumTotalIncome);
 router.post("/order", verifyToken, createOrder);

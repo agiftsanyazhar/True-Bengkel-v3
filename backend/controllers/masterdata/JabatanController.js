@@ -29,8 +29,8 @@ export const createJabatan = async (req, res) => {
   try {
     const checks = [
       check("name", "Name is required").notEmpty(),
-      check("gaji_pokok", "Gaji Pokok is required").notEmpty().isNumeric(),
-      check("tunjangan", "Tunjangan is required").notEmpty().isNumeric(),
+      check("salary", "Salary is required").notEmpty().isNumeric(),
+      check("allowance", "Allowance is required").notEmpty().isNumeric(),
     ];
 
     const errors = validationResult(
@@ -59,8 +59,8 @@ export const updateJabatan = async (req, res) => {
   try {
     const checks = [
       check("name", "Name is required").notEmpty(),
-      check("gaji_pokok", "Gaji Pokok is required").notEmpty().isNumeric(),
-      check("tunjangan", "Tunjangan is required").notEmpty().isNumeric(),
+      check("salary", "Salary is required").notEmpty().isNumeric(),
+      check("allowance", "allowance is required").notEmpty().isNumeric(),
     ];
 
     const errors = validationResult(
@@ -69,11 +69,6 @@ export const updateJabatan = async (req, res) => {
 
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
-    }
-
-    const existingJabatan = await Jabatan.findOne({ where: { name } });
-    if (existingJabatan) {
-      return res.status(400).json({ msg: "Jabatan already exists!" });
     }
 
     await Jabatan.update(req.body, {

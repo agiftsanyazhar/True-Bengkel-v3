@@ -17,19 +17,6 @@ const WidgetsDropdown = (props) => {
 
   const history = useNavigate()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await refreshToken()
-        await getUsers()
-        await getOrder()
-        await getTotalIncome()
-      } catch (error) {}
-    }
-
-    fetchData()
-  }, [token])
-
   const refreshToken = async () => {
     try {
       const response = await axios.get('http://localhost:5000/token')
@@ -64,12 +51,12 @@ const WidgetsDropdown = (props) => {
   )
 
   const getUsers = async () => {
-    const response = await axios.get('http://localhost:5000/user', {
+    const response = await axios.get('http://localhost:5000/total-user', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    setUserCount(response.data.length)
+    setUserCount(response.data)
   }
 
   const getOrder = async () => {
@@ -101,6 +88,19 @@ const WidgetsDropdown = (props) => {
       minimumFractionDigits: 2,
     }).format(value)
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await refreshToken()
+        await getUsers()
+        await getOrder()
+        await getTotalIncome()
+      } catch (error) {}
+    }
+
+    fetchData()
+  }, [token])
 
   return (
     <CRow className={props.className} xs={{ gutter: 4 }}>

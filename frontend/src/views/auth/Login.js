@@ -83,7 +83,7 @@ const Login = () => {
                   />
                   <CRow className="text-center">
                     <CCol>
-                      <CButton type="submit" color="primary" className="px-4 mb-4">
+                      <CButton type="submit" color="primary" className="mb-4">
                         Login
                       </CButton>
                     </CCol>

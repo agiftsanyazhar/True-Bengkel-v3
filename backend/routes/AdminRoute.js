@@ -8,6 +8,6 @@ import { verifyToken } from "../middleware/verifyToken.js";
 const router = express.Router();
 
 router.get("/admin", verifyToken, getAdmins);
-router.get("/admin/:id", verifyToken, getAdminById);
+router.get("/admin/:id", getAdminById);
 
 export default router;

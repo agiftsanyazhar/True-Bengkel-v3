@@ -11,9 +11,9 @@ import { verifyToken } from "../middleware/verifyToken.js";
 const router = express.Router();
 
 router.get("/jabatan", verifyToken, getJabatans);
-router.get("/jabatan/:id", verifyToken, getJabatanById);
+router.get("/jabatan/:id", getJabatanById);
 router.post("/jabatan", verifyToken, createJabatan);
 router.patch("/jabatan/:id", verifyToken, updateJabatan);
-router.delete("/jabatan/:id", verifyToken, deleteJabatan);
+router.delete("/jabatan/:id", deleteJabatan);
 
 export default router;

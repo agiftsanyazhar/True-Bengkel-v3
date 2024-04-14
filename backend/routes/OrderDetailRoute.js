@@ -9,7 +9,7 @@ import { verifyToken } from "../middleware/verifyToken.js";
 const router = express.Router();
 
 router.get("/detil-order", verifyToken, getOrderDetails);
-router.get("/detil-order/:id", verifyToken, getOrderDetailById);
+router.get("/detil-order/:id", getOrderDetailById);
 router.post("/detil-order", verifyToken, createOrderDetail);
 
 export default router;

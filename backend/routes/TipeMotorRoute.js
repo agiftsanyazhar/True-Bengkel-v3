@@ -11,9 +11,9 @@ import { verifyToken } from "../middleware/verifyToken.js";
 const router = express.Router();
 
 router.get("/tipe-motor", verifyToken, getTipeMotors);
-router.get("/tipe-motor/:id", verifyToken, getTipeMotorById);
+router.get("/tipe-motor/:id", getTipeMotorById);
 router.post("/tipe-motor", verifyToken, createTipeMotor);
 router.patch("/tipe-motor/:id", verifyToken, updateTipeMotor);
-router.delete("/tipe-motor/:id", verifyToken, deleteTipeMotor);
+router.delete("/tipe-motor/:id", deleteTipeMotor);
 
 export default router;

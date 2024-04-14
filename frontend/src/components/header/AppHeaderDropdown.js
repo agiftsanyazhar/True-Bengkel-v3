@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import {
   CAvatar,
-  CButton,
   CDropdown,
   CDropdownItem,
   CDropdownMenu,
@@ -32,11 +31,9 @@ const AppHeaderDropdown = () => {
         <CAvatar src={avatar8} size="md" />
       </CDropdownToggle>
       <CDropdownMenu className="pt-2 pb-2" placement="bottom-end">
-        <CDropdownItem>
-          <CButton type="button" onClick={Logout}>
-            <CIcon icon={cilExitToApp} className="me-2" />
-            Logout
-          </CButton>
+        <CDropdownItem onClick={Logout}>
+          <CIcon icon={cilExitToApp} className="me-2" />
+          Logout
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

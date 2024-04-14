@@ -8,6 +8,6 @@ import { verifyToken } from "../middleware/verifyToken.js";
 const router = express.Router();
 
 router.get("/Pegawai", verifyToken, getPegawais);
-router.get("/Pegawai/:id", verifyToken, getPegawaiById);
+router.get("/Pegawai/:id", getPegawaiById);
 
 export default router;

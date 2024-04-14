@@ -35,8 +35,8 @@ export const getPegawais = async (req, res) => {
           attributes: [
             "id",
             "name",
-            "gaji_pokok",
-            "tunjangan",
+            "salary",
+            "allowance",
             "createdAt",
             "updatedAt",
           ],
@@ -85,8 +85,8 @@ export const getPegawaiById = async (req, res) => {
           attributes: [
             "id",
             "name",
-            "gaji_pokok",
-            "tunjangan",
+            "salary",
+            "allowance",
             "createdAt",
             "updatedAt",
           ],

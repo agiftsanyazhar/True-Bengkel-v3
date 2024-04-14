@@ -26,7 +26,7 @@ const Register = () => {
   const [failedMsg, setFailedMsg] = useState('')
   const history = useNavigate()
 
-  const Register = async (e) => {
+  const saveRegister = async (e) => {
     e.preventDefault()
 
     try {
@@ -64,7 +64,7 @@ const Register = () => {
           <CCol md={6}>
             <CCard className="p-4">
               <CCardBody>
-                <CForm onSubmit={Register}>
+                <CForm onSubmit={saveRegister}>
                   <h1 className="text-center mb-5">Register</h1>
                   {successMsg && (
                     <CAlert color="success" variant="solid" dismissible>
@@ -132,7 +132,7 @@ const Register = () => {
                   />
                   <CRow className="text-center">
                     <CCol>
-                      <CButton type="submit" color="primary" className="px-4 mb-4">
+                      <CButton type="submit" color="primary" className="mb-4">
                         Register
                       </CButton>
                     </CCol>
