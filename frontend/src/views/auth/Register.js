@@ -53,29 +53,29 @@ const Register = () => {
 
     if (message) {
       setSuccessMsg(message)
-      localStorage.removeItem('successMsg') // Clear message
+      localStorage.removeItem('successMsg')
     }
-  }, []) // Empty dependency array ensures it runs only once on component mount
+  }, [])
 
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={6}>
-            {successMsg && (
-              <CAlert color="success" variant="solid" dismissible>
-                {successMsg}
-              </CAlert>
-            )}
-            {failedMsg && (
-              <CAlert color="danger" variant="solid" dismissible>
-                {failedMsg}
-              </CAlert>
-            )}
             <CCard className="p-4">
               <CCardBody>
                 <CForm onSubmit={Register}>
-                  <h1 className="text-center">Register</h1>
+                  <h1 className="text-center mb-5">Register</h1>
+                  {successMsg && (
+                    <CAlert color="success" variant="solid" dismissible>
+                      {successMsg}
+                    </CAlert>
+                  )}
+                  {failedMsg && (
+                    <CAlert color="danger" variant="solid" dismissible>
+                      {failedMsg}
+                    </CAlert>
+                  )}
                   <CFormInput
                     className="mb-3"
                     type="hidden"

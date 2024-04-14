@@ -2,51 +2,91 @@ import { React, useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import { CRow, CCol, CWidgetStatsA } from '@coreui/react'
-import { getStyle } from '@coreui/utils'
 
 import axios from 'axios'
+import { jwtDecode } from 'jwt-decode'
+import { useNavigate } from 'react-router-dom'
 
 const WidgetsDropdown = (props) => {
-  const widgetChartRef1 = useRef(null)
-  const widgetChartRef2 = useRef(null)
-
   const [userCount, setUserCount] = useState(0)
   const [orderCount, setOrderCount] = useState(0)
   const [totalIncome, setTotalIncome] = useState(0)
 
-  useEffect(() => {
-    document.documentElement.addEventListener('ColorSchemeChange', () => {
-      if (widgetChartRef1.current) {
-        setTimeout(() => {
-          widgetChartRef1.current.data.datasets[0].pointBackgroundColor = getStyle('--cui-primary')
-          widgetChartRef1.current.update()
-        })
-      }
+  const [token, setToken] = useState('')
+  const [expired, setExpired] = useState('')
 
-      if (widgetChartRef2.current) {
-        setTimeout(() => {
-          widgetChartRef2.current.data.datasets[0].pointBackgroundColor = getStyle('--cui-info')
-          widgetChartRef2.current.update()
-        })
+  const history = useNavigate()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await refreshToken()
+        await getUsers()
+        await getOrder()
+        await getTotalIncome()
+      } catch (error) {}
+    }
+
+    fetchData()
+  }, [token])
+
+  const refreshToken = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/token')
+      setToken(response.data.accessToken)
+      const decoded = jwtDecode(response.data.accessToken)
+      setExpired(decoded.exp)
+    } catch (error) {
+      if (error.response) {
+        history('/')
       }
-    }),
-      getUsers(),
-      getOrder(),
-      getTotalIncome()
-  }, [widgetChartRef1, widgetChartRef2])
+    }
+  }
+
+  const axiosJwt = axios.create()
+
+  axiosJwt.interceptors.request.use(
+    async (config) => {
+      const currentDate = new Date()
+
+      if (expired * 1000 < currentDate.getTime()) {
+        const response = await axios.get('http://localhost:5000/token')
+        config.headers.Authorization = `Bearer ${response.data.accessToken}`
+        setToken(response.data.accessToken)
+        const decoded = jwtDecode(response.data.accessToken)
+        setExpired(decoded.exp)
+      }
+      return config
+    },
+    (error) => {
+      return Promise.reject(error)
+    },
+  )
 
   const getUsers = async () => {
-    const response = await axios.get('http://localhost:5000/user')
+    const response = await axios.get('http://localhost:5000/user', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     setUserCount(response.data.length)
   }
 
   const getOrder = async () => {
-    const response = await axios.get('http://localhost:5000/total-order')
+    const response = await axios.get('http://localhost:5000/total-order', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     setOrderCount(response.data)
   }
 
   const getTotalIncome = async () => {
-    const response = await axios.get('http://localhost:5000/total-income')
+    const response = await axios.get('http://localhost:5000/total-income', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     setTotalIncome(response.data)
   }
 

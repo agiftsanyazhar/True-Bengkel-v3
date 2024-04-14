@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import {
@@ -37,25 +37,34 @@ const Login = () => {
     }
   }
 
+  useEffect(() => {
+    const message = localStorage.getItem('successMsg')
+
+    if (message) {
+      setSuccessMsg(message)
+      localStorage.removeItem('successMsg')
+    }
+  }, [])
+
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={6}>
-            {successMsg && (
-              <CAlert color="success" variant="solid" dismissible>
-                {successMsg}
-              </CAlert>
-            )}
-            {failedMsg && (
-              <CAlert color="danger" variant="solid" dismissible>
-                {failedMsg}
-              </CAlert>
-            )}
             <CCard className="p-4">
               <CCardBody>
                 <CForm onSubmit={Auth}>
-                  <h1 className="text-center">Login</h1>
+                  <h1 className="text-center mb-5">Login</h1>
+                  {successMsg && (
+                    <CAlert color="success" variant="solid" dismissible>
+                      {successMsg}
+                    </CAlert>
+                  )}
+                  {failedMsg && (
+                    <CAlert color="danger" variant="solid" dismissible>
+                      {failedMsg}
+                    </CAlert>
+                  )}
                   <CFormInput
                     className="mb-3"
                     type="email"
