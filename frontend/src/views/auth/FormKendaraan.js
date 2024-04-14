@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   CAlert,
   CButton,
@@ -13,7 +13,7 @@ import {
   CRow,
 } from '@coreui/react'
 
-const Register = () => {
+const Kendaraan = () => {
   const [role_id, setRoleId] = useState(3)
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
@@ -22,10 +22,19 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [rePassword, setRePassword] = useState('')
 
-  const [msg, setMsg] = useState('')
+  const [successMsg, setSuccessMsg] = useState('')
+  const [failedMsg, setFailedMsg] = useState('')
   const history = useNavigate()
 
-  const Register = async (e) => {
+  useEffect(() => {
+    const message = localStorage.getItem('successMsg')
+    if (message) {
+      setSuccessMsg(message)
+      localStorage.removeItem('successMsg') // Clear message
+    }
+  }, [])
+
+  const Kendaraan = async (e) => {
     e.preventDefault()
 
     try {
@@ -38,10 +47,11 @@ const Register = () => {
         phone,
         address,
       })
-      history('/')
+      setSuccessMsg('Registrasi berhasil! Silakan tambah kendaraan Anda!')
+      history('/login')
     } catch (error) {
       if (error.response) {
-        setMsg(error.response.data.msg)
+        setFailedMsg(error.response.data.msg)
       }
     }
   }
@@ -51,15 +61,20 @@ const Register = () => {
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={6}>
-            {msg && (
+            {successMsg && (
+              <CAlert color="success" variant="solid" dismissible>
+                {successMsg}
+              </CAlert>
+            )}
+            {failedMsg && (
               <CAlert color="danger" variant="solid" dismissible>
-                {msg}
+                {failedMsg}
               </CAlert>
             )}
             <CCard className="p-4">
               <CCardBody>
-                <CForm onSubmit={Register}>
-                  <h1 className="text-center">Register</h1>
+                <CForm onSubmit={Kendaraan}>
+                  <h1 className="text-center">Tambah Kendaraan</h1>
                   <CFormInput
                     className="mb-3"
                     type="hidden"
@@ -117,12 +132,9 @@ const Register = () => {
                   <CRow className="text-center">
                     <CCol>
                       <CButton type="submit" color="primary" className="px-4 mb-4">
-                        Register
+                        Tambah
                       </CButton>
                     </CCol>
-                    <p className="text-body-secondary">
-                      Sudah punya akun? <Link to="/">Login!</Link>
-                    </p>
                   </CRow>
                 </CForm>
               </CCardBody>
@@ -134,4 +146,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Kendaraan

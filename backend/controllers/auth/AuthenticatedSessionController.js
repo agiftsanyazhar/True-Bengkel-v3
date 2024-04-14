@@ -18,16 +18,16 @@ export const login = async (req, res) => {
         .json({ msg: "These credentials do not match our records." });
     }
 
-    const userId = user.id;
-    const userName = user.name;
-    const userEmail = user.email;
+    const id = user.id;
+    const name = user.name;
+    const email = user.email;
     const accessToken = jwt.sign(
-      { userId, userName, userEmail },
+      { id, name, email },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "15s" }
     );
     const refreshToken = jwt.sign(
-      { userId, userName, userEmail },
+      { id, name, email },
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: "1d" }
     );
@@ -36,7 +36,7 @@ export const login = async (req, res) => {
       { refresh_token: refreshToken },
       {
         where: {
-          id: userId,
+          id: id,
         },
       }
     );
@@ -72,13 +72,13 @@ export const logout = async (req, res) => {
     return res.sendStatus(204);
   }
 
-  const userId = user.id;
+  const id = user.id;
 
   await User.update(
     { refresh_token: null },
     {
       where: {
-        id: userId,
+        id: id,
       },
     }
   );

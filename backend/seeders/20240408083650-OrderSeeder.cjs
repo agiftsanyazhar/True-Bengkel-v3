@@ -10,7 +10,7 @@ module.exports = {
         is_paid: 0,
         total_shopping: 601000,
         proof_of_payment:
-          "backend/assets/img/proof-of-payment/bukti-pembayaran-1.jpg",
+          "backend/public/img/proof-of-payment/bukti-pembayaran-1.jpg",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -20,7 +20,7 @@ module.exports = {
         is_paid: 0,
         total_shopping: 342000,
         proof_of_payment:
-          "backend/assets/img/proof-of-payment/bukti-pembayaran-2.jpg",
+          "backend/public/img/proof-of-payment/bukti-pembayaran-2.jpg",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -30,7 +30,7 @@ module.exports = {
         is_paid: 0,
         total_shopping: 408000,
         proof_of_payment:
-          "backend/assets/img/proof-of-payment/bukti-pembayaran-3.jpg",
+          "backend/public/img/proof-of-payment/bukti-pembayaran-3.jpg",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

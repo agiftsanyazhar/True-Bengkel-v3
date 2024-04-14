@@ -32,9 +32,7 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarHeader className="border-bottom">
-        <CSidebarBrand to="/">
-          <a href="">True Bengkel</a>
-        </CSidebarBrand>
+        <CSidebarBrand to="/dashboard">True Bengkel</CSidebarBrand>
         <CCloseButton
           className="d-lg-none"
           dark

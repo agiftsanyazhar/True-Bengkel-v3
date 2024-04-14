@@ -1,8 +1,10 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
+import { Link, useNavigate } from 'react-router-dom'
 
 import {
+  CAlert,
   CCard,
   CCol,
   CRow,
@@ -17,23 +19,69 @@ import {
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 
 const Dashboard = () => {
+  const [name, setName] = useState('')
+  const [token, setToken] = useState('')
+  const [expired, setExpired] = useState('')
+
   const [users, setUser] = useState([])
 
+  const history = useNavigate()
+
   useEffect(() => {
+    refreshToken()
     getUsers()
   }, [])
 
+  const refreshToken = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/token')
+      setToken(response.data.accessToken)
+      const decoded = jwtDecode(response.data.accessToken)
+      setName(decoded.name)
+      setExpired(decoded.exp)
+    } catch (error) {
+      if (error.response) {
+        history('/')
+      }
+    }
+  }
+
+  const axiosJwt = axios.create()
+
+  axiosJwt.interceptors.request.use(
+    async (config) => {
+      const currentDate = new Date()
+
+      if (expired * 1000 < currentDate.getTime()) {
+        const response = await axios.get('http://localhost:5000/token')
+        config.headers.Authorization = `Bearer ${response.data.accessToken}`
+        setToken(response.data.accessToken)
+        const decoded = jwtDecode(response.data.accessToken)
+        setName(decoded.name)
+        setExpired(decoded.exp)
+      }
+      return config
+    },
+    (error) => {
+      return Promise.reject(error)
+    },
+  )
+
   const getUsers = async () => {
-    const response = await axios.get('http://localhost:5000/user')
+    const response = await axiosJwt.get('http://localhost:5000/user', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     setUser(response.data)
   }
 
   return (
     <>
+      <CAlert color="success" variant="solid" dismissible>
+        Selamat datang, {name}!
+      </CAlert>
       <WidgetsDropdown className="mb-4" />
-      {/* <Link to={'tambah'} className="button is-primary">
-        Tambah
-      </Link> */}
       <CRow>
         <CCol xs>
           <CCard className="mb-4">

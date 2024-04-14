@@ -10,7 +10,7 @@ module.exports = {
         name: "GASKET, CYLINDER",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nobis iste soluta enim asperiores repellendus aliquam laudantium hic, necessitatibus ut nisi aspernatur quis et ullam atque sed quas possimus, maiores quaerat vitae cupiditate? Eaque impedit animi provident. Labore unde inventore voluptatem eaque exercitationem aut voluptatum vero soluta voluptate deserunt neque, commodi, maiores cupiditate vel doloribus sequi impedit distinctio debitis nam dolorem reiciendis saepe iure tempore. Animi quis excepturi eius quibusdam nostrum beatae molestias saepe in laudantium natus eveniet neque voluptatem repellat quae officiis, odio, iure libero. Praesentium ad, at sunt esse quae nemo, similique ipsam tempore fugiat velit itaque iste.",
-        image: "backend/assets/img/spare-part/GASKET,CYLINDER.jpg",
+        image: "backend/public/img/spare-part/GASKET,CYLINDER.jpg",
         stock: Math.floor(Math.random() * 1000),
         price: 8000,
         createdAt: new Date(),
@@ -22,7 +22,7 @@ module.exports = {
         name: "ARM COMP VALVE ROCKER",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nobis iste soluta enim asperiores repellendus aliquam laudantium hic, necessitatibus ut nisi aspernatur quis et ullam atque sed quas possimus, maiores quaerat vitae cupiditate? Eaque impedit animi provident. Labore unde inventore voluptatem eaque exercitationem aut voluptatum vero soluta voluptate deserunt neque, commodi, maiores cupiditate vel doloribus sequi impedit distinctio debitis nam dolorem reiciendis saepe iure tempore. Animi quis excepturi eius quibusdam nostrum beatae molestias saepe in laudantium natus eveniet neque voluptatem repellat quae officiis, odio, iure libero. Praesentium ad, at sunt esse quae nemo, similique ipsam tempore fugiat velit itaque iste.",
-        image: "backend/assets/img/spare-part/ARM COMP VALVE ROCKER.jpg",
+        image: "backend/public/img/spare-part/ARM COMP VALVE ROCKER.jpg",
         stock: Math.floor(Math.random() * 1000),
         price: 195000,
         createdAt: new Date(),
@@ -34,7 +34,7 @@ module.exports = {
         name: "ELEMENT COMP, AIR/C",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nobis iste soluta enim asperiores repellendus aliquam laudantium hic, necessitatibus ut nisi aspernatur quis et ullam atque sed quas possimus, maiores quaerat vitae cupiditate? Eaque impedit animi provident. Labore unde inventore voluptatem eaque exercitationem aut voluptatum vero soluta voluptate deserunt neque, commodi, maiores cupiditate vel doloribus sequi impedit distinctio debitis nam dolorem reiciendis saepe iure tempore. Animi quis excepturi eius quibusdam nostrum beatae molestias saepe in laudantium natus eveniet neque voluptatem repellat quae officiis, odio, iure libero. Praesentium ad, at sunt esse quae nemo, similique ipsam tempore fugiat velit itaque iste.",
-        image: "backend/assets/img/spare-part/ELEMENT COMP,AIR C.jpg",
+        image: "backend/public/img/spare-part/ELEMENT COMP,AIR C.jpg",
         stock: Math.floor(Math.random() * 1000),
         price: 48000,
         createdAt: new Date(),
@@ -46,7 +46,7 @@ module.exports = {
         name: "PROTECTOR, MUFFLER *TBLACK*",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nobis iste soluta enim asperiores repellendus aliquam laudantium hic, necessitatibus ut nisi aspernatur quis et ullam atque sed quas possimus, maiores quaerat vitae cupiditate? Eaque impedit animi provident. Labore unde inventore voluptatem eaque exercitationem aut voluptatum vero soluta voluptate deserunt neque, commodi, maiores cupiditate vel doloribus sequi impedit distinctio debitis nam dolorem reiciendis saepe iure tempore. Animi quis excepturi eius quibusdam nostrum beatae molestias saepe in laudantium natus eveniet neque voluptatem repellat quae officiis, odio, iure libero. Praesentium ad, at sunt esse quae nemo, similique ipsam tempore fugiat velit itaque iste.",
-        image: "backend/assets/img/spare-part/PROTECTOR, MUFFLER TBLACK.jpg",
+        image: "backend/public/img/spare-part/PROTECTOR, MUFFLER TBLACK.jpg",
         stock: Math.floor(Math.random() * 1000),
         price: 30000,
         createdAt: new Date(),
@@ -58,7 +58,7 @@ module.exports = {
         name: "PROTECTOR, MUFFLER",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nobis iste soluta enim asperiores repellendus aliquam laudantium hic, necessitatibus ut nisi aspernatur quis et ullam atque sed quas possimus, maiores quaerat vitae cupiditate? Eaque impedit animi provident. Labore unde inventore voluptatem eaque exercitationem aut voluptatum vero soluta voluptate deserunt neque, commodi, maiores cupiditate vel doloribus sequi impedit distinctio debitis nam dolorem reiciendis saepe iure tempore. Animi quis excepturi eius quibusdam nostrum beatae molestias saepe in laudantium natus eveniet neque voluptatem repellat quae officiis, odio, iure libero. Praesentium ad, at sunt esse quae nemo, similique ipsam tempore fugiat velit itaque iste.",
-        image: "backend/assets/img/spare-part/PROTECTOR, MUFFLER.jpg",
+        image: "backend/public/img/spare-part/PROTECTOR, MUFFLER.jpg",
         stock: Math.floor(Math.random() * 1000),
         price: 33000,
         createdAt: new Date(),
@@ -70,7 +70,7 @@ module.exports = {
         name: "PROTECTOR, MUFFLER",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nobis iste soluta enim asperiores repellendus aliquam laudantium hic, necessitatibus ut nisi aspernatur quis et ullam atque sed quas possimus, maiores quaerat vitae cupiditate? Eaque impedit animi provident. Labore unde inventore voluptatem eaque exercitationem aut voluptatum vero soluta voluptate deserunt neque, commodi, maiores cupiditate vel doloribus sequi impedit distinctio debitis nam dolorem reiciendis saepe iure tempore. Animi quis excepturi eius quibusdam nostrum beatae molestias saepe in laudantium natus eveniet neque voluptatem repellat quae officiis, odio, iure libero. Praesentium ad, at sunt esse quae nemo, similique ipsam tempore fugiat velit itaque iste.",
-        image: "backend/assets/img/spare-part/PROTECTOR, MUFFLER1.jpg",
+        image: "backend/public/img/spare-part/PROTECTOR, MUFFLER1.jpg",
         stock: Math.floor(Math.random() * 1000),
         price: 30000,
         createdAt: new Date(),
@@ -82,7 +82,7 @@ module.exports = {
         name: "ROLLER WEIGHT SET",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nobis iste soluta enim asperiores repellendus aliquam laudantium hic, necessitatibus ut nisi aspernatur quis et ullam atque sed quas possimus, maiores quaerat vitae cupiditate? Eaque impedit animi provident. Labore unde inventore voluptatem eaque exercitationem aut voluptatum vero soluta voluptate deserunt neque, commodi, maiores cupiditate vel doloribus sequi impedit distinctio debitis nam dolorem reiciendis saepe iure tempore. Animi quis excepturi eius quibusdam nostrum beatae molestias saepe in laudantium natus eveniet neque voluptatem repellat quae officiis, odio, iure libero. Praesentium ad, at sunt esse quae nemo, similique ipsam tempore fugiat velit itaque iste.",
-        image: "backend/assets/img/spare-part/ROLLER WEIGHT SET.jpg",
+        image: "backend/public/img/spare-part/ROLLER WEIGHT SET.jpg",
         stock: Math.floor(Math.random() * 1000),
         price: 47000,
         createdAt: new Date(),
@@ -94,7 +94,7 @@ module.exports = {
         name: "BELT DRIVE",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nobis iste soluta enim asperiores repellendus aliquam laudantium hic, necessitatibus ut nisi aspernatur quis et ullam atque sed quas possimus, maiores quaerat vitae cupiditate? Eaque impedit animi provident. Labore unde inventore voluptatem eaque exercitationem aut voluptatum vero soluta voluptate deserunt neque, commodi, maiores cupiditate vel doloribus sequi impedit distinctio debitis nam dolorem reiciendis saepe iure tempore. Animi quis excepturi eius quibusdam nostrum beatae molestias saepe in laudantium natus eveniet neque voluptatem repellat quae officiis, odio, iure libero. Praesentium ad, at sunt esse quae nemo, similique ipsam tempore fugiat velit itaque iste.",
-        image: "backend/assets/img/spare-part/BELT DRIVE.jpg",
+        image: "backend/public/img/spare-part/BELT DRIVE.jpg",
         stock: Math.floor(Math.random() * 1000),
         price: 120000,
         createdAt: new Date(),
@@ -106,7 +106,7 @@ module.exports = {
         name: "UNIT COMP, CDI",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nobis iste soluta enim asperiores repellendus aliquam laudantium hic, necessitatibus ut nisi aspernatur quis et ullam atque sed quas possimus, maiores quaerat vitae cupiditate? Eaque impedit animi provident. Labore unde inventore voluptatem eaque exercitationem aut voluptatum vero soluta voluptate deserunt neque, commodi, maiores cupiditate vel doloribus sequi impedit distinctio debitis nam dolorem reiciendis saepe iure tempore. Animi quis excepturi eius quibusdam nostrum beatae molestias saepe in laudantium natus eveniet neque voluptatem repellat quae officiis, odio, iure libero. Praesentium ad, at sunt esse quae nemo, similique ipsam tempore fugiat velit itaque iste.",
-        image: "backend/assets/img/spare-part/UNIT COMP,CDI.jpg",
+        image: "backend/public/img/spare-part/UNIT COMP,CDI.jpg",
         stock: Math.floor(Math.random() * 1000),
         price: 575000,
         createdAt: new Date(),
@@ -118,7 +118,7 @@ module.exports = {
         name: "CAP ASSY NOISE SUP",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nobis iste soluta enim asperiores repellendus aliquam laudantium hic, necessitatibus ut nisi aspernatur quis et ullam atque sed quas possimus, maiores quaerat vitae cupiditate? Eaque impedit animi provident. Labore unde inventore voluptatem eaque exercitationem aut voluptatum vero soluta voluptate deserunt neque, commodi, maiores cupiditate vel doloribus sequi impedit distinctio debitis nam dolorem reiciendis saepe iure tempore. Animi quis excepturi eius quibusdam nostrum beatae molestias saepe in laudantium natus eveniet neque voluptatem repellat quae officiis, odio, iure libero. Praesentium ad, at sunt esse quae nemo, similique ipsam tempore fugiat velit itaque iste.",
-        image: "backend/assets/img/spare-part/CAP ASSY NOISE SUP.jpg",
+        image: "backend/public/img/spare-part/CAP ASSY NOISE SUP.jpg",
         stock: Math.floor(Math.random() * 999) + 1,
         price: 30000,
         createdAt: new Date(),

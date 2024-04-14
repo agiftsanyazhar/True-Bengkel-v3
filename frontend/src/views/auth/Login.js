@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { React, useState } from 'react'
+import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 import {
+  CAlert,
   CButton,
   CCard,
   CCardBody,
@@ -15,14 +17,44 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const [successMsg, setSuccessMsg] = useState('')
+  const [failedMsg, setFailedMsg] = useState('')
+  const history = useNavigate()
+
+  const Auth = async (e) => {
+    e.preventDefault()
+
+    try {
+      await axios.post('http://localhost:5000/login', {
+        email,
+        password,
+      })
+      history('/dashboard')
+    } catch (error) {
+      if (error.response) {
+        setFailedMsg(error.response.data.msg)
+      }
+    }
+  }
+
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={6}>
+            {successMsg && (
+              <CAlert color="success" variant="solid" dismissible>
+                {successMsg}
+              </CAlert>
+            )}
+            {failedMsg && (
+              <CAlert color="danger" variant="solid" dismissible>
+                {failedMsg}
+              </CAlert>
+            )}
             <CCard className="p-4">
               <CCardBody>
-                <CForm>
+                <CForm onSubmit={Auth}>
                   <h1 className="text-center">Login</h1>
                   <CFormInput
                     className="mb-3"
@@ -42,7 +74,7 @@ const Login = () => {
                   />
                   <CRow className="text-center">
                     <CCol>
-                      <CButton color="primary" className="px-4 mb-4">
+                      <CButton type="submit" color="primary" className="px-4 mb-4">
                         Login
                       </CButton>
                     </CCol>
