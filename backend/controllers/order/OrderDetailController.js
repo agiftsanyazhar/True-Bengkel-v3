@@ -23,11 +23,11 @@ export const getOrderDetails = async (req, res) => {
   }
 };
 
-export const getOrderDetailById = async (req, res) => {
+export const getOrderDetailByOrderId = async (req, res) => {
   try {
-    const response = await OrderDetail.findOne({
+    const response = await OrderDetail.findAll({
       where: {
-        id: req.params.id,
+        order_id: req.params.order_id,
       },
       include: [
         {

@@ -144,7 +144,7 @@ const AddSparePart = () => {
             <div className="mb-3">
               <CFormInput
                 type="text"
-                placeholder="Spare Part Code"
+                placeholder="Kode Spare Part"
                 value={sparePartCode}
                 onChange={(e) => setSparePartCode(e.target.value)}
                 required

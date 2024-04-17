@@ -29,10 +29,6 @@ const Order = db.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    proof_of_payment: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
   },
   {
     freezeTableName: true,

@@ -10,18 +10,18 @@ const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 // --------------------------------------------------------------------------
 // Jabatan
 const Jabatan = React.lazy(() => import('./views/master/data-master/jabatan/Jabatan'))
-const addJabatan = React.lazy(() => import('./views/master/data-master/jabatan/AddJabatan'))
-const editJabatan = React.lazy(() => import('./views/master/data-master/jabatan/EditJabatan'))
+const AddJabatan = React.lazy(() => import('./views/master/data-master/jabatan/AddJabatan'))
+const EditJabatan = React.lazy(() => import('./views/master/data-master/jabatan/EditJabatan'))
 
 // Role
 const Role = React.lazy(() => import('./views/master/data-master/role/Role'))
-const addRole = React.lazy(() => import('./views/master/data-master/role/AddRole'))
-const editRole = React.lazy(() => import('./views/master/data-master/role/EditRole'))
+const AddRole = React.lazy(() => import('./views/master/data-master/role/AddRole'))
+const EditRole = React.lazy(() => import('./views/master/data-master/role/EditRole'))
 
 // Tipe Motor
 const TipeMotor = React.lazy(() => import('./views/master/data-master/tipe-motor/TipeMotor'))
-const addTipeMotor = React.lazy(() => import('./views/master/data-master/tipe-motor/AddTipeMotor'))
-const editTipeMotor = React.lazy(
+const AddTipeMotor = React.lazy(() => import('./views/master/data-master/tipe-motor/AddTipeMotor'))
+const EditTipeMotor = React.lazy(
   () => import('./views/master/data-master/tipe-motor/EditTipeMotor'),
 )
 
@@ -33,16 +33,26 @@ const SemuaUser = React.lazy(() => import('./views/master/user/semua-user/SemuaU
 
 // Admin
 const Admin = React.lazy(() => import('./views/master/user/admin/Admin'))
-const addAdmin = React.lazy(() => import('./views/master/user/admin/AddAdmin'))
+const AddAdmin = React.lazy(() => import('./views/master/user/admin/AddAdmin'))
 
 // Admin
 const Pegawai = React.lazy(() => import('./views/master/user/pegawai/Pegawai'))
-const addPegawai = React.lazy(() => import('./views/master/user/pegawai/AddPegawai'))
+const AddPegawai = React.lazy(() => import('./views/master/user/pegawai/AddPegawai'))
 
 // Spare Part
 const SparePart = React.lazy(() => import('./views/master/spare-part/SparePart'))
-const addSparePart = React.lazy(() => import('./views/master/spare-part/AddSparePart'))
-const editSparePart = React.lazy(() => import('./views/master/spare-part/EditSparePart'))
+const AddSparePart = React.lazy(() => import('./views/master/spare-part/AddSparePart'))
+const EditSparePart = React.lazy(() => import('./views/master/spare-part/EditSparePart'))
+
+// --------------------------------------------------------------------------
+// Pesanan
+// --------------------------------------------------------------------------
+// Pesanan
+const Pesanan = React.lazy(() => import('./views/pesanan/pesanan/Pesanan'))
+const DetilPesanan = React.lazy(() => import('./views/pesanan/pesanan/DetilPesanan'))
+
+// Kendaraan
+const Kendaraan = React.lazy(() => import('./views/pesanan/kendaraan/Kendaraan'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -59,12 +69,12 @@ const routes = [
   {
     path: '/master/data-master/jabatan/tambah',
     name: 'Tambah Jabatan',
-    element: addJabatan,
+    element: AddJabatan,
   },
   {
     path: '/master/data-master/jabatan/edit/:id',
     name: 'Edit Jabatan',
-    element: editJabatan,
+    element: EditJabatan,
   },
 
   // Role
@@ -72,12 +82,12 @@ const routes = [
   {
     path: '/master/data-master/role/tambah',
     name: 'Tambah Role',
-    element: addRole,
+    element: AddRole,
   },
   {
     path: '/master/data-master/role/edit/:id',
     name: 'Edit Role',
-    element: editRole,
+    element: EditRole,
   },
 
   // Tipe Motor
@@ -85,12 +95,12 @@ const routes = [
   {
     path: '/master/data-master/tipe-motor/tambah',
     name: 'Tambah Tipe Motor',
-    element: addTipeMotor,
+    element: AddTipeMotor,
   },
   {
     path: '/master/data-master/tipe-motor/edit/:id',
     name: 'Edit Tipe Motor',
-    element: editTipeMotor,
+    element: EditTipeMotor,
   },
 
   // --------------------------------------------------------------------------
@@ -101,24 +111,34 @@ const routes = [
 
   // Admin
   { path: '/master/user/admin', name: 'Admin', element: Admin },
-  { path: '/master/user/admin/tambah', name: 'Tambah Admin', element: addAdmin },
+  { path: '/master/user/admin/tambah', name: 'Tambah Admin', element: AddAdmin },
 
   // Pegawai
   { path: '/master/user/pegawai', name: 'Pegawai', element: Pegawai },
-  { path: '/master/user/pegawai/tambah', name: 'Tambah Pegawai', element: addPegawai },
+  { path: '/master/user/pegawai/tambah', name: 'Tambah Pegawai', element: AddPegawai },
 
   // Spare Part
   { path: '/master/spare-part', name: 'Spare Part', element: SparePart },
   {
     path: '/master/spare-part/tambah',
     name: 'Tambah Spare Part',
-    element: addSparePart,
+    element: AddSparePart,
   },
   {
     path: '/master/spare-part/edit/:id',
     name: 'Edit Spare Part',
-    element: editSparePart,
+    element: EditSparePart,
   },
+
+  // --------------------------------------------------------------------------
+  // Master
+  // --------------------------------------------------------------------------
+  // Pesanan
+  { path: '/pesanan/pesanan', name: 'Pesanan', element: Pesanan },
+  { path: '/pesanan/pesanan/detil/:id', name: 'Detil Pesanan', element: DetilPesanan },
+
+  // Kendaraan
+  { path: '/pesanan/kendaraan', name: 'Kendaraan', element: Kendaraan },
 ]
 
 export default routes
