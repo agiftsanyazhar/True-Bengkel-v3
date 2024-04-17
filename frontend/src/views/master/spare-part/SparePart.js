@@ -167,7 +167,7 @@ const SparePart = () => {
                     <div>{formatCurrency(sparePart.price)}</div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <Link to={`/master/data-master/spare-part/edit/${sparePart.id}`}>
+                    <Link to={`/master/spare-part/edit/${sparePart.id}`}>
                       <CButton color="warning" className="m-1">
                         <CIcon icon={cilPencil} />
                       </CButton>

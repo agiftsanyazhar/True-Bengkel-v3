@@ -165,14 +165,13 @@ const AddSparePart = () => {
             </div>
             <div className="mb-3">
               <CFormTextarea
-                rows={3}
+                rows={5}
                 placeholder="Deskripsi"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
               ></CFormTextarea>
             </div>
-
             <div className="mb-3">
               <CFormInput
                 type="number"

@@ -10,6 +10,7 @@ import {
   CContainer,
   CForm,
   CFormInput,
+  CFormTextarea,
   CRow,
 } from '@coreui/react'
 
@@ -107,13 +108,14 @@ const Register = () => {
                     onChange={(e) => setPhone(e.target.value)}
                     required
                   />
-                  <CFormInput
+                  <CFormTextarea
+                    rows={5}
                     className="mb-3"
                     placeholder="Alamat"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     required
-                  />
+                  ></CFormTextarea>
                   <CFormInput
                     className="mb-3"
                     type="password"
