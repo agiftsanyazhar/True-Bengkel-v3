@@ -2,17 +2,32 @@ import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
-import { CAlert, CButton, CCard, CCardBody, CCardHeader, CForm, CFormInput } from '@coreui/react'
+import {
+  CAlert,
+  CButton,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CForm,
+  CFormInput,
+  CFormSelect,
+  CFormTextarea,
+} from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilSave } from '@coreui/icons'
 
-const AddJabatan = () => {
+const AddSparePart = () => {
+  const [sparePartCode, setSparePartCode] = useState('')
+  const [selectedTipeMotor, setSelectedTipeMotor] = useState('')
   const [name, setName] = useState('')
-  const [salary, setSalary] = useState('')
-  const [allowance, setAllowance] = useState('')
+  const [description, setDescription] = useState('')
+  const [stock, setStock] = useState('')
+  const [price, setPrice] = useState('')
 
   const [token, setToken] = useState('')
   const [expired, setExpired] = useState('')
+
+  const [tipeMotors, setTipeMotor] = useState([])
 
   const [successMsg, setSuccessMsg] = useState('')
   const [failedMsg, setFailedMsg] = useState('')
@@ -51,16 +66,19 @@ const AddJabatan = () => {
     },
   )
 
-  const saveJabatan = async (e) => {
+  const saveSparePart = async (e) => {
     e.preventDefault()
 
     try {
       await axios.post(
-        'http://localhost:5000/jabatan',
+        'http://localhost:5000/spare-part',
         {
+          spare_part_code: sparePartCode,
+          tipe_motor_id: selectedTipeMotor,
           name,
-          salary,
-          allowance,
+          description,
+          stock,
+          price,
         },
         {
           headers: {
@@ -75,6 +93,15 @@ const AddJabatan = () => {
     }
   }
 
+  const getTipeMotors = async () => {
+    const response = await axiosJwt.get('http://localhost:5000/tipe-motor', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    setTipeMotor(response.data)
+  }
+
   useEffect(() => {
     const message = localStorage.getItem('successMsg')
 
@@ -84,6 +111,7 @@ const AddJabatan = () => {
     }
 
     refreshToken()
+    getTipeMotors()
   }, [])
 
   return (
@@ -100,14 +128,14 @@ const AddJabatan = () => {
       )}
       <CCard className="mb-4">
         <CCardHeader>
-          <strong>Tambah Jabatan</strong>
+          <strong>Tambah Spare Part</strong>
         </CCardHeader>
         <CCardBody>
-          <CForm onSubmit={saveJabatan}>
+          <CForm onSubmit={saveSparePart}>
             <div className="mb-3">
               <CFormInput
                 type="text"
-                placeholder="Nama Jabatan"
+                placeholder="Nama"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -115,19 +143,51 @@ const AddJabatan = () => {
             </div>
             <div className="mb-3">
               <CFormInput
+                type="text"
+                placeholder="Spare Part Code"
+                value={sparePartCode}
+                onChange={(e) => setSparePartCode(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <CFormSelect
+                value={selectedTipeMotor}
+                onChange={(e) => setSelectedTipeMotor(e.target.value)}
+              >
+                <option>Pilih Tipe Motor</option>
+                {tipeMotors.map((tipeMotor, index) => (
+                  <option key={index} value={tipeMotor.id}>
+                    {tipeMotor.name}
+                  </option>
+                ))}
+              </CFormSelect>
+            </div>
+            <div className="mb-3">
+              <CFormTextarea
+                rows={3}
+                placeholder="Deskripsi"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+              ></CFormTextarea>
+            </div>
+
+            <div className="mb-3">
+              <CFormInput
                 type="number"
-                placeholder="Gaji"
-                value={salary}
-                onChange={(e) => setSalary(e.target.value)}
+                placeholder="Stok"
+                value={stock}
+                onChange={(e) => setStock(e.target.value)}
                 required
               />
             </div>
             <div className="mb-3">
               <CFormInput
                 type="number"
-                placeholder="Tunjangan (ketik 0 jika tidak ada)"
-                value={allowance}
-                onChange={(e) => setAllowance(e.target.value)}
+                placeholder="Harga"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
                 required
               />
             </div>
@@ -141,4 +201,4 @@ const AddJabatan = () => {
   )
 }
 
-export default AddJabatan
+export default AddSparePart

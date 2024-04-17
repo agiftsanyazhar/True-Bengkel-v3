@@ -19,11 +19,11 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilPlus } from '@coreui/icons'
 
-const Admin = () => {
+const Pegawai = () => {
   const [token, setToken] = useState('')
   const [expired, setExpired] = useState('')
 
-  const [admins, setAdmin] = useState([])
+  const [pegawais, setPegawai] = useState([])
 
   const [successMsg, setSuccessMsg] = useState('')
   const [failedMsg, setFailedMsg] = useState('')
@@ -62,13 +62,13 @@ const Admin = () => {
     },
   )
 
-  const getAdmins = async () => {
-    const response = await axiosJwt.get('http://localhost:5000/admin', {
+  const getPegawais = async () => {
+    const response = await axiosJwt.get('http://localhost:5000/pegawai', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    setAdmin(response.data)
+    setPegawai(response.data)
   }
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const Admin = () => {
     }
 
     refreshToken()
-    getAdmins()
+    getPegawais()
   }, [])
 
   return (
@@ -97,8 +97,8 @@ const Admin = () => {
       )}
       <CCard className="mb-4">
         <CCardHeader>
-          <strong>Admin</strong>
-          <Link to="/master/user/admin/tambah">
+          <strong>Pegawai</strong>
+          <Link to="/master/user/pegawai/tambah">
             <CButton color="primary" className="ms-3">
               <CIcon icon={cilPlus} />
             </CButton>
@@ -110,18 +110,29 @@ const Admin = () => {
               <CTableRow>
                 <CTableHeaderCell className="bg-body-tertiary text-center">#</CTableHeaderCell>
                 <CTableHeaderCell className="bg-body-tertiary">Nama</CTableHeaderCell>
-                <CTableHeaderCell className="bg-body-tertiary">Email</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Telepon</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Alamat</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Jabatan</CTableHeaderCell>
               </CTableRow>
             </CTableHead>
             <CTableBody>
-              {admins.map((admin, index) => (
-                <CTableRow v-for="item in tableItems" key={admin.id}>
+              {pegawais.map((pegawai, index) => (
+                <CTableRow v-for="item in tableItems" key={pegawai.id}>
                   <CTableDataCell className="text-center">{index + 1}</CTableDataCell>
                   <CTableDataCell>
-                    <div>{admin.name}</div>
+                    <div>{pegawai.name}</div>
+                    <div className="small text-body-secondary text-nowrap">
+                      <span>{pegawai.email}</span>
+                    </div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <div>{admin.email}</div>
+                    <div>{pegawai.phone}</div>
+                  </CTableDataCell>
+                  <CTableDataCell>
+                    <div>{pegawai.address}</div>
+                  </CTableDataCell>
+                  <CTableDataCell>
+                    <div>{pegawai.jabatan.name}</div>
                   </CTableDataCell>
                 </CTableRow>
               ))}
@@ -133,4 +144,4 @@ const Admin = () => {
   )
 }
 
-export default Admin
+export default Pegawai

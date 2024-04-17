@@ -25,9 +25,9 @@ export const register = async (req, res) => {
       check("password", "Password is required").notEmpty(),
       check("rePassword", "Confirm password is required").notEmpty(),
 
-      check("phone", "Phone is required").notEmpty().isMobilePhone("id-ID"),
-      check("address", "Address is required").notEmpty(),
-      check("jabatan_id", "Jabatan is required").notEmpty().isNumeric(),
+      check("phone", "Phone is required").isMobilePhone("id-ID"),
+      check("address", "Address is required"),
+      check("jabatan_id", "Jabatan is required").isNumeric(),
     ];
 
     const errors = validationResult(
@@ -51,10 +51,10 @@ export const register = async (req, res) => {
     }
 
     const user = await User.create({
+      role_id,
       name,
       email,
       password: hashPassword,
-      role_id,
     });
 
     if (role_id === 1) {

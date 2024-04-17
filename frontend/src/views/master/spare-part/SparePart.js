@@ -19,11 +19,11 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilPencil, cilPlus, cilTrash } from '@coreui/icons'
 
-const TipeMotor = () => {
+const SparePart = () => {
   const [token, setToken] = useState('')
   const [expired, setExpired] = useState('')
 
-  const [tipeMotors, setTipeMotor] = useState([])
+  const [spareParts, setSparePart] = useState([])
 
   const [successMsg, setSuccessMsg] = useState('')
   const [failedMsg, setFailedMsg] = useState('')
@@ -62,24 +62,36 @@ const TipeMotor = () => {
     },
   )
 
-  const getTipeMotors = async () => {
-    const response = await axiosJwt.get('http://localhost:5000/tipe-motor', {
+  const getSpareParts = async () => {
+    const response = await axiosJwt.get('http://localhost:5000/spare-part', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    setTipeMotor(response.data)
+    setSparePart(response.data)
   }
 
-  const deleteTipeMotor = async (id) => {
+  const deleteSparePart = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/tipe-motor/${id}`)
-      getTipeMotors()
+      await axios.delete(`http://localhost:5000/spare-part/${id}`)
+      getSpareParts()
       setSuccessMsg('Data berhasil dihapus!')
     } catch (error) {
       console.log(error)
       setFailedMsg('Data gagal dihapus!')
     }
+  }
+
+  const formatNumber = (value) => {
+    return new Intl.NumberFormat('id-ID').format(value)
+  }
+
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+      minimumFractionDigits: 2,
+    }).format(value)
   }
 
   useEffect(() => {
@@ -91,7 +103,7 @@ const TipeMotor = () => {
     }
 
     refreshToken()
-    getTipeMotors()
+    getSpareParts()
   }, [])
 
   return (
@@ -108,8 +120,8 @@ const TipeMotor = () => {
       )}
       <CCard className="mb-4">
         <CCardHeader>
-          <strong>Tipe Motor</strong>
-          <Link to="/master/data-master/tipe-motor/tambah">
+          <strong>Spare Part</strong>
+          <Link to="/master/spare-part/tambah">
             <CButton color="primary" className="ms-3">
               <CIcon icon={cilPlus} />
             </CButton>
@@ -121,18 +133,41 @@ const TipeMotor = () => {
               <CTableRow>
                 <CTableHeaderCell className="bg-body-tertiary text-center">#</CTableHeaderCell>
                 <CTableHeaderCell className="bg-body-tertiary">Nama</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Tipe Motor</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Deskripsi</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Stok</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Harga</CTableHeaderCell>
                 <CTableHeaderCell className="bg-body-tertiary">Aksi</CTableHeaderCell>
               </CTableRow>
             </CTableHead>
             <CTableBody>
-              {tipeMotors.map((tipeMotor, index) => (
-                <CTableRow v-for="item in tableItems" key={tipeMotor.id}>
+              {spareParts.map((sparePart, index) => (
+                <CTableRow v-for="item in tableItems" key={sparePart.id}>
                   <CTableDataCell className="text-center">{index + 1}</CTableDataCell>
                   <CTableDataCell>
-                    <div>{tipeMotor.name}</div>
+                    <div>{sparePart.name}</div>
+                    <div className="small text-body-secondary text-nowrap">
+                      <span>{sparePart.spare_part_code}</span>
+                    </div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <Link to={`/master/data-master/tipe-motor/edit/${tipeMotor.id}`}>
+                    <div>{sparePart.tipe_motor.name}</div>
+                  </CTableDataCell>
+                  <CTableDataCell>
+                    <div>
+                      {sparePart.description.length > 100
+                        ? sparePart.description.substring(0, 100) + '...'
+                        : sparePart.description}
+                    </div>
+                  </CTableDataCell>
+                  <CTableDataCell>
+                    <div>{formatNumber(sparePart.stock)}</div>
+                  </CTableDataCell>
+                  <CTableDataCell>
+                    <div>{formatCurrency(sparePart.price)}</div>
+                  </CTableDataCell>
+                  <CTableDataCell>
+                    <Link to={`/master/data-master/spare-part/edit/${sparePart.id}`}>
                       <CButton color="warning" className="m-1">
                         <CIcon icon={cilPencil} />
                       </CButton>
@@ -142,7 +177,7 @@ const TipeMotor = () => {
                       className="m-1"
                       onClick={() => {
                         if (window.confirm('Apakah Anda yakin ingin menhapus ini?')) {
-                          deleteTipeMotor(tipeMotor.id)
+                          deleteSparePart(sparePart.id)
                         }
                       }}
                     >
@@ -159,4 +194,4 @@ const TipeMotor = () => {
   )
 }
 
-export default TipeMotor
+export default SparePart

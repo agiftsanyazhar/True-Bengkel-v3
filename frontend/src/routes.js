@@ -33,6 +33,16 @@ const SemuaUser = React.lazy(() => import('./views/master/user/semua-user/SemuaU
 
 // Admin
 const Admin = React.lazy(() => import('./views/master/user/admin/Admin'))
+const addAdmin = React.lazy(() => import('./views/master/user/admin/AddAdmin'))
+
+// Admin
+const Pegawai = React.lazy(() => import('./views/master/user/pegawai/Pegawai'))
+const addPegawai = React.lazy(() => import('./views/master/user/pegawai/AddPegawai'))
+
+// Spare Part
+const SparePart = React.lazy(() => import('./views/master/spare-part/SparePart'))
+const addSparePart = React.lazy(() => import('./views/master/spare-part/AddSparePart'))
+const editSparePart = React.lazy(() => import('./views/master/spare-part/EditSparePart'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -91,6 +101,24 @@ const routes = [
 
   // Admin
   { path: '/master/user/admin', name: 'Admin', element: Admin },
+  { path: '/master/user/admin/tambah', name: 'Tambah Admin', element: addAdmin },
+
+  // Pegawai
+  { path: '/master/user/pegawai', name: 'Pegawai', element: Pegawai },
+  { path: '/master/user/pegawai/tambah', name: 'Tambah Pegawai', element: addPegawai },
+
+  // Spare Part
+  { path: '/master/spare-part', name: 'Spare Part', element: SparePart },
+  {
+    path: '/master/spare-part/tambah',
+    name: 'Tambah Spare Part',
+    element: addSparePart,
+  },
+  {
+    path: '/master/spare-part/edit/:id',
+    name: 'Edit Spare Part',
+    element: editSparePart,
+  },
 ]
 
 export default routes

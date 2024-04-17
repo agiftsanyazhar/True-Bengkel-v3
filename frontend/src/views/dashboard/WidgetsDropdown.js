@@ -8,9 +8,9 @@ import { jwtDecode } from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
 
 const WidgetsDropdown = (props) => {
-  const [userCount, setUserCount] = useState(0)
-  const [orderCount, setOrderCount] = useState(0)
-  const [totalIncome, setTotalIncome] = useState(0)
+  const [userCount, setUserCount] = useState('')
+  const [orderCount, setOrderCount] = useState('')
+  const [totalIncome, setTotalIncome] = useState('')
 
   const [token, setToken] = useState('')
   const [expired, setExpired] = useState('')
