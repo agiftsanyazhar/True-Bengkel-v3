@@ -84,7 +84,7 @@ const Dashboard = () => {
       <WidgetsDropdown className="mb-4" />
       <CCard className="mb-4">
         <CCardHeader>
-          <strong>Users</strong>
+          <strong>Semua User</strong>
         </CCardHeader>
         <CCardBody>
           <CTable align="middle" className="mb-0 border" hover responsive>

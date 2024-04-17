@@ -19,11 +19,11 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilPencil, cilPlus, cilTrash } from '@coreui/icons'
 
-const Jabatan = () => {
+const TipeMotor = () => {
   const [token, setToken] = useState('')
   const [expired, setExpired] = useState('')
 
-  const [jabatans, setJabatan] = useState([])
+  const [tipeMotors, setTipeMotor] = useState([])
 
   const [successMsg, setSuccessMsg] = useState('')
   const [failedMsg, setFailedMsg] = useState('')
@@ -62,19 +62,19 @@ const Jabatan = () => {
     },
   )
 
-  const getJabatans = async () => {
-    const response = await axiosJwt.get('http://localhost:5000/jabatan', {
+  const getTipeMotors = async () => {
+    const response = await axiosJwt.get('http://localhost:5000/tipe-motor', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    setJabatan(response.data)
+    setTipeMotor(response.data)
   }
 
-  const deleteJabatan = async (id) => {
+  const deleteTipeMotor = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/jabatan/${id}`)
-      getJabatans()
+      await axios.delete(`http://localhost:5000/tipe-motor/${id}`)
+      getTipeMotors()
       setSuccessMsg('Data berhasil dihapus!')
     } catch (error) {
       console.log(error)
@@ -99,7 +99,7 @@ const Jabatan = () => {
     }
 
     refreshToken()
-    getJabatans()
+    getTipeMotors()
   }, [])
 
   return (
@@ -116,8 +116,8 @@ const Jabatan = () => {
       )}
       <CCard className="mb-4">
         <CCardHeader>
-          <strong>Jabatan</strong>
-          <Link to="/master/data-master/jabatan/tambah">
+          <strong>Tipe Motor</strong>
+          <Link to="/master/data-master/tipe-motor/tambah">
             <CButton color="primary" className="ms-3">
               <CIcon icon={cilPlus} />
             </CButton>
@@ -129,26 +129,18 @@ const Jabatan = () => {
               <CTableRow>
                 <CTableHeaderCell className="bg-body-tertiary text-center">#</CTableHeaderCell>
                 <CTableHeaderCell className="bg-body-tertiary">Nama</CTableHeaderCell>
-                <CTableHeaderCell className="bg-body-tertiary">Gaji</CTableHeaderCell>
-                <CTableHeaderCell className="bg-body-tertiary">Tunjangan</CTableHeaderCell>
                 <CTableHeaderCell className="bg-body-tertiary">Aksi</CTableHeaderCell>
               </CTableRow>
             </CTableHead>
             <CTableBody>
-              {jabatans.map((jabatan, index) => (
-                <CTableRow v-for="item in tableItems" key={jabatan.id}>
+              {tipeMotors.map((tipeMotor, index) => (
+                <CTableRow v-for="item in tableItems" key={tipeMotor.id}>
                   <CTableDataCell className="text-center">{index + 1}</CTableDataCell>
                   <CTableDataCell>
-                    <div>{jabatan.name}</div>
+                    <div>{tipeMotor.name}</div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <div>{formatCurrency(jabatan.salary)}</div>
-                  </CTableDataCell>
-                  <CTableDataCell>
-                    <div>{formatCurrency(jabatan.allowance)}</div>
-                  </CTableDataCell>
-                  <CTableDataCell>
-                    <Link to={`/master/data-master/jabatan/edit/${jabatan.id}`}>
+                    <Link to={`/master/data-master/tipe-motor/edit/${tipeMotor.id}`}>
                       <CButton color="warning" className="m-1">
                         <CIcon icon={cilPencil} />
                       </CButton>
@@ -158,7 +150,7 @@ const Jabatan = () => {
                       className="m-1"
                       onClick={() => {
                         if (window.confirm('Apakah Anda yakin ingin menhapus ini?')) {
-                          deleteJabatan(jabatan.id)
+                          deleteTipeMotor(tipeMotor.id)
                         }
                       }}
                     >
@@ -175,4 +167,4 @@ const Jabatan = () => {
   )
 }
 
-export default Jabatan
+export default TipeMotor

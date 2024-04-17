@@ -1,11 +1,10 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import {
   CAlert,
-  CButton,
   CCard,
   CCardBody,
   CCardHeader,
@@ -16,14 +15,12 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilPencil, cilPlus, cilTrash } from '@coreui/icons'
 
-const Jabatan = () => {
+const Admin = () => {
   const [token, setToken] = useState('')
   const [expired, setExpired] = useState('')
 
-  const [jabatans, setJabatan] = useState([])
+  const [admins, setAdmin] = useState([])
 
   const [successMsg, setSuccessMsg] = useState('')
   const [failedMsg, setFailedMsg] = useState('')
@@ -62,32 +59,13 @@ const Jabatan = () => {
     },
   )
 
-  const getJabatans = async () => {
-    const response = await axiosJwt.get('http://localhost:5000/jabatan', {
+  const getAdmins = async () => {
+    const response = await axiosJwt.get('http://localhost:5000/admin', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    setJabatan(response.data)
-  }
-
-  const deleteJabatan = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/jabatan/${id}`)
-      getJabatans()
-      setSuccessMsg('Data berhasil dihapus!')
-    } catch (error) {
-      console.log(error)
-      setFailedMsg('Data gagal dihapus!')
-    }
-  }
-
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 2,
-    }).format(value)
+    setAdmin(response.data)
   }
 
   useEffect(() => {
@@ -99,7 +77,7 @@ const Jabatan = () => {
     }
 
     refreshToken()
-    getJabatans()
+    getAdmins()
   }, [])
 
   return (
@@ -116,12 +94,7 @@ const Jabatan = () => {
       )}
       <CCard className="mb-4">
         <CCardHeader>
-          <strong>Jabatan</strong>
-          <Link to="/master/data-master/jabatan/tambah">
-            <CButton color="primary" className="ms-3">
-              <CIcon icon={cilPlus} />
-            </CButton>
-          </Link>
+          <strong>Admin</strong>
         </CCardHeader>
         <CCardBody>
           <CTable align="middle" className="mb-0 border" hover responsive>
@@ -129,41 +102,18 @@ const Jabatan = () => {
               <CTableRow>
                 <CTableHeaderCell className="bg-body-tertiary text-center">#</CTableHeaderCell>
                 <CTableHeaderCell className="bg-body-tertiary">Nama</CTableHeaderCell>
-                <CTableHeaderCell className="bg-body-tertiary">Gaji</CTableHeaderCell>
-                <CTableHeaderCell className="bg-body-tertiary">Tunjangan</CTableHeaderCell>
-                <CTableHeaderCell className="bg-body-tertiary">Aksi</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Email</CTableHeaderCell>
               </CTableRow>
             </CTableHead>
             <CTableBody>
-              {jabatans.map((jabatan, index) => (
-                <CTableRow v-for="item in tableItems" key={jabatan.id}>
+              {admins.map((admin, index) => (
+                <CTableRow v-for="item in tableItems" key={admin.id}>
                   <CTableDataCell className="text-center">{index + 1}</CTableDataCell>
                   <CTableDataCell>
-                    <div>{jabatan.name}</div>
+                    <div>{admin.name}</div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <div>{formatCurrency(jabatan.salary)}</div>
-                  </CTableDataCell>
-                  <CTableDataCell>
-                    <div>{formatCurrency(jabatan.allowance)}</div>
-                  </CTableDataCell>
-                  <CTableDataCell>
-                    <Link to={`/master/data-master/jabatan/edit/${jabatan.id}`}>
-                      <CButton color="warning" className="m-1">
-                        <CIcon icon={cilPencil} />
-                      </CButton>
-                    </Link>
-                    <CButton
-                      color="danger"
-                      className="m-1"
-                      onClick={() => {
-                        if (window.confirm('Apakah Anda yakin ingin menhapus ini?')) {
-                          deleteJabatan(jabatan.id)
-                        }
-                      }}
-                    >
-                      <CIcon icon={cilTrash} />
-                    </CButton>
+                    <div>{admin.email}</div>
                   </CTableDataCell>
                 </CTableRow>
               ))}
@@ -175,4 +125,4 @@ const Jabatan = () => {
   )
 }
 
-export default Jabatan
+export default Admin

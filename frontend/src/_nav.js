@@ -46,7 +46,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Semua',
-        to: '/master/user/semua',
+        to: '/master/user/semua-user',
       },
       {
         component: CNavItem,
