@@ -35,9 +35,12 @@ const SemuaUser = React.lazy(() => import('./views/master/user/semua-user/SemuaU
 const Admin = React.lazy(() => import('./views/master/user/admin/Admin'))
 const AddAdmin = React.lazy(() => import('./views/master/user/admin/AddAdmin'))
 
-// Admin
+// Pegawai
 const Pegawai = React.lazy(() => import('./views/master/user/pegawai/Pegawai'))
 const AddPegawai = React.lazy(() => import('./views/master/user/pegawai/AddPegawai'))
+
+// Pelanggan
+const Pelanggan = React.lazy(() => import('./views/master/user/pelanggan/Pelanggan'))
 
 // Spare Part
 const SparePart = React.lazy(() => import('./views/master/spare-part/SparePart'))
@@ -56,7 +59,7 @@ const Kendaraan = React.lazy(() => import('./views/pesanan/kendaraan/Kendaraan')
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/admin/dashboard', name: 'Dashboard', element: Dashboard },
 
   // --------------------------------------------------------------------------
   // Master
@@ -65,40 +68,40 @@ const routes = [
   // Data Master
   // --------------------------------------------------------------------------
   // Jabatan
-  { path: '/master/data-master/jabatan', name: 'Jabatan', element: Jabatan },
+  { path: '/admin/master/data-master/jabatan', name: 'Jabatan', element: Jabatan },
   {
-    path: '/master/data-master/jabatan/tambah',
+    path: '/admin/master/data-master/jabatan/tambah',
     name: 'Tambah Jabatan',
     element: AddJabatan,
   },
   {
-    path: '/master/data-master/jabatan/edit/:id',
+    path: '/admin/master/data-master/jabatan/edit/:id',
     name: 'Edit Jabatan',
     element: EditJabatan,
   },
 
   // Role
-  { path: '/master/data-master/role', name: 'Role', element: Role },
+  { path: '/admin/master/data-master/role', name: 'Role', element: Role },
   {
-    path: '/master/data-master/role/tambah',
+    path: '/admin/master/data-master/role/tambah',
     name: 'Tambah Role',
     element: AddRole,
   },
   {
-    path: '/master/data-master/role/edit/:id',
+    path: '/admin/master/data-master/role/edit/:id',
     name: 'Edit Role',
     element: EditRole,
   },
 
   // Tipe Motor
-  { path: '/master/data-master/tipe-motor', name: 'Tipe Motor', element: TipeMotor },
+  { path: '/admin/master/data-master/tipe-motor', name: 'Tipe Motor', element: TipeMotor },
   {
-    path: '/master/data-master/tipe-motor/tambah',
+    path: '/admin/master/data-master/tipe-motor/tambah',
     name: 'Tambah Tipe Motor',
     element: AddTipeMotor,
   },
   {
-    path: '/master/data-master/tipe-motor/edit/:id',
+    path: '/admin/master/data-master/tipe-motor/edit/:id',
     name: 'Edit Tipe Motor',
     element: EditTipeMotor,
   },
@@ -107,25 +110,28 @@ const routes = [
   // User
   // --------------------------------------------------------------------------
   // Semua User
-  { path: '/master/user/semua-user', name: 'Semua User', element: SemuaUser },
+  { path: '/admin/master/user/semua-user', name: 'Semua User', element: SemuaUser },
 
   // Admin
-  { path: '/master/user/admin', name: 'Admin', element: Admin },
-  { path: '/master/user/admin/tambah', name: 'Tambah Admin', element: AddAdmin },
+  { path: '/admin/master/user/admin', name: 'Admin', element: Admin },
+  { path: '/admin/master/user/admin/tambah', name: 'Tambah Admin', element: AddAdmin },
 
   // Pegawai
-  { path: '/master/user/pegawai', name: 'Pegawai', element: Pegawai },
-  { path: '/master/user/pegawai/tambah', name: 'Tambah Pegawai', element: AddPegawai },
+  { path: '/admin/master/user/pegawai', name: 'Pegawai', element: Pegawai },
+  { path: '/admin/master/user/pegawai/tambah', name: 'Tambah Pegawai', element: AddPegawai },
+
+  // Pelanggan
+  { path: '/admin/master/user/pelanggan', name: 'Pelanggan', element: Pelanggan },
 
   // Spare Part
-  { path: '/master/spare-part', name: 'Spare Part', element: SparePart },
+  { path: '/admin/master/spare-part', name: 'Spare Part', element: SparePart },
   {
-    path: '/master/spare-part/tambah',
+    path: '/admin/master/spare-part/tambah',
     name: 'Tambah Spare Part',
     element: AddSparePart,
   },
   {
-    path: '/master/spare-part/edit/:id',
+    path: '/admin/master/spare-part/edit/:id',
     name: 'Edit Spare Part',
     element: EditSparePart,
   },
@@ -134,11 +140,11 @@ const routes = [
   // Master
   // --------------------------------------------------------------------------
   // Pesanan
-  { path: '/pesanan/pesanan', name: 'Pesanan', element: Pesanan },
-  { path: '/pesanan/pesanan/detil/:id', name: 'Detil Pesanan', element: DetilPesanan },
+  { path: '/admin/pesanan/pesanan', name: 'Pesanan', element: Pesanan },
+  { path: '/admin/pesanan/pesanan/detil/:id', name: 'Detil Pesanan', element: DetilPesanan },
 
   // Kendaraan
-  { path: '/pesanan/kendaraan', name: 'Kendaraan', element: Kendaraan },
+  { path: '/admin/pesanan/kendaraan', name: 'Kendaraan', element: Kendaraan },
 ]
 
 export default routes

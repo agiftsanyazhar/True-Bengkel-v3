@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import {
   CAlert,
+  CButton,
   CCard,
   CCardBody,
   CCardHeader,
@@ -16,11 +17,11 @@ import {
   CTableRow,
 } from '@coreui/react'
 
-const SemuaUser = () => {
+const Pelanggan = () => {
   const [token, setToken] = useState('')
   const [expired, setExpired] = useState('')
 
-  const [semuaUsers, setSemuaUser] = useState([])
+  const [pelanggans, setPelanggan] = useState([])
 
   const [successMsg, setSuccessMsg] = useState('')
   const [failedMsg, setFailedMsg] = useState('')
@@ -59,13 +60,13 @@ const SemuaUser = () => {
     },
   )
 
-  const getSemuaUsers = async () => {
-    const response = await axiosJwt.get('http://localhost:5000/user', {
+  const getPelanggans = async () => {
+    const response = await axiosJwt.get('http://localhost:5000/pelanggan', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    setSemuaUser(response.data)
+    setPelanggan(response.data)
   }
 
   useEffect(() => {
@@ -77,7 +78,7 @@ const SemuaUser = () => {
     }
 
     refreshToken()
-    getSemuaUsers()
+    getPelanggans()
   }, [])
 
   return (
@@ -94,7 +95,7 @@ const SemuaUser = () => {
       )}
       <CCard className="mb-4">
         <CCardHeader>
-          <strong>Semua User</strong>
+          <strong>Pelanggan</strong>
         </CCardHeader>
         <CCardBody>
           <CTable align="middle" className="mb-0 border" hover responsive>
@@ -102,21 +103,25 @@ const SemuaUser = () => {
               <CTableRow>
                 <CTableHeaderCell className="bg-body-tertiary text-center">#</CTableHeaderCell>
                 <CTableHeaderCell className="bg-body-tertiary">Nama</CTableHeaderCell>
-                <CTableHeaderCell className="bg-body-tertiary">Role</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Telepon</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Alamat</CTableHeaderCell>
               </CTableRow>
             </CTableHead>
             <CTableBody>
-              {semuaUsers.map((semuaUser, index) => (
-                <CTableRow v-for="item in tableItems" key={semuaUser.id}>
+              {pelanggans.map((pelanggan, index) => (
+                <CTableRow v-for="item in tableItems" key={pelanggan.id}>
                   <CTableDataCell className="text-center">{index + 1}</CTableDataCell>
                   <CTableDataCell>
-                    <div>{semuaUser.name}</div>
+                    <div>{pelanggan.name}</div>
                     <div className="small text-body-secondary text-nowrap">
-                      <span>{semuaUser.email}</span>
+                      <span>{pelanggan.email}</span>
                     </div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <div>{semuaUser.role.name}</div>
+                    <div>{pelanggan.phone}</div>
+                  </CTableDataCell>
+                  <CTableDataCell>
+                    <div>{pelanggan.address}</div>
                   </CTableDataCell>
                 </CTableRow>
               ))}
@@ -128,4 +133,4 @@ const SemuaUser = () => {
   )
 }
 
-export default SemuaUser
+export default Pelanggan

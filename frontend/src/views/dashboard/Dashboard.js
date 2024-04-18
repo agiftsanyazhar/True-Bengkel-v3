@@ -106,9 +106,7 @@ const Dashboard = () => {
                     </div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <div className="d-flex justify-content-between text-nowrap">
-                      {user.role.name}
-                    </div>
+                    <div>{user.role.name}</div>
                   </CTableDataCell>
                 </CTableRow>
               ))}

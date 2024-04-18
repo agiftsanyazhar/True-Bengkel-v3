@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import {
   CAlert,
   CButton,
+  CButtonGroup,
   CCard,
   CCardBody,
   CCardHeader,
@@ -128,16 +129,16 @@ const Pesanan = () => {
                     </div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <div className="d-flex justify-content-between text-nowrap">
-                      {formatCurrency(pesanan.total_shopping)}
-                    </div>
+                    <div>{formatCurrency(pesanan.total_shopping)}</div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <Link to={`/pesanan/pesanan/detil/${pesanan.id}`}>
-                      <CButton color="primary" className="m-1">
-                        <CIcon icon={cilInfo} />
-                      </CButton>
-                    </Link>
+                    <CButtonGroup>
+                      <Link to={`/admin/pesanan/pesanan/detil/${pesanan.id}`}>
+                        <CButton color="primary" className="m-1">
+                          <CIcon icon={cilInfo} />
+                        </CButton>
+                      </Link>
+                    </CButtonGroup>
                   </CTableDataCell>
                 </CTableRow>
               ))}

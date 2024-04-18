@@ -29,7 +29,7 @@ const Login = () => {
         email,
         password,
       })
-      history('/dashboard')
+      history('/admin/dashboard')
     } catch (error) {
       if (error.response) {
         setFailedMsg(error.response.data.msg)

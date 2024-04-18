@@ -7,7 +7,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Dashboard',
-    to: '/dashboard',
+    to: '/admin/dashboard',
     icon: <CIcon icon={cilHome} customClassName="nav-icon" />,
   },
   {
@@ -17,58 +17,58 @@ const _nav = [
   {
     component: CNavGroup,
     name: 'Data Master',
-    to: '/master/data-master',
+    to: '/admin/master/data-master',
     icon: <CIcon icon={cilClipboard} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
         name: 'Jabatan',
-        to: '/master/data-master/jabatan',
+        to: '/admin/master/data-master/jabatan',
       },
       {
         component: CNavItem,
         name: 'Role',
-        to: '/master/data-master/role',
+        to: '/admin/master/data-master/role',
       },
       {
         component: CNavItem,
         name: 'Tipe Motor',
-        to: '/master/data-master/tipe-motor',
+        to: '/admin/master/data-master/tipe-motor',
       },
     ],
   },
   {
     component: CNavGroup,
     name: 'User',
-    to: '/master/user',
+    to: '/admin/master/user',
     icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
         name: 'Semua',
-        to: '/master/user/semua-user',
+        to: '/admin/master/user/semua-user',
       },
       {
         component: CNavItem,
         name: 'Admin',
-        to: '/master/user/admin',
+        to: '/admin/master/user/admin',
       },
       {
         component: CNavItem,
         name: 'Pegawai',
-        to: '/master/user/pegawai',
+        to: '/admin/master/user/pegawai',
       },
       {
         component: CNavItem,
         name: 'Pelanggan',
-        to: '/master/user/pelanggan',
+        to: '/admin/master/user/pelanggan',
       },
     ],
   },
   {
     component: CNavItem,
     name: 'Spare Part',
-    to: '/master/spare-part',
+    to: '/admin/master/spare-part',
     icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
   },
   {
@@ -78,13 +78,13 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Pesanan',
-    to: '/pesanan/pesanan',
+    to: '/admin/pesanan/pesanan',
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Kendaraan',
-    to: '/pesanan/kendaraan',
+    to: '/admin/pesanan/kendaraan',
     icon: <CIcon icon={cilCarAlt} customClassName="nav-icon" />,
   },
 ]

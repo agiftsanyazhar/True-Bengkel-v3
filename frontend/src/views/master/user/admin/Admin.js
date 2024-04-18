@@ -98,7 +98,7 @@ const Admin = () => {
       <CCard className="mb-4">
         <CCardHeader>
           <strong>Admin</strong>
-          <Link to="/master/user/admin/tambah">
+          <Link to="/admin/master/user/admin/tambah">
             <CButton color="primary" className="ms-3">
               <CIcon icon={cilPlus} />
             </CButton>

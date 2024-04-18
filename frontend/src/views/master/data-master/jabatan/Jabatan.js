@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import {
   CAlert,
   CButton,
+  CButtonGroup,
   CCard,
   CCardBody,
   CCardHeader,
@@ -117,7 +118,7 @@ const Jabatan = () => {
       <CCard className="mb-4">
         <CCardHeader>
           <strong>Jabatan</strong>
-          <Link to="/master/data-master/jabatan/tambah">
+          <Link to="/admin/master/data-master/jabatan/tambah">
             <CButton color="primary" className="ms-3">
               <CIcon icon={cilPlus} />
             </CButton>
@@ -148,22 +149,24 @@ const Jabatan = () => {
                     <div>{formatCurrency(jabatan.allowance)}</div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <Link to={`/master/data-master/jabatan/edit/${jabatan.id}`}>
-                      <CButton color="warning" className="m-1">
-                        <CIcon icon={cilPencil} />
+                    <CButtonGroup>
+                      <Link to={`/admin/master/data-master/jabatan/edit/${jabatan.id}`}>
+                        <CButton color="warning" className="m-1">
+                          <CIcon icon={cilPencil} />
+                        </CButton>
+                      </Link>
+                      <CButton
+                        color="danger"
+                        className="m-1"
+                        onClick={() => {
+                          if (window.confirm('Apakah Anda yakin ingin menhapus ini?')) {
+                            deleteJabatan(jabatan.id)
+                          }
+                        }}
+                      >
+                        <CIcon icon={cilTrash} />
                       </CButton>
-                    </Link>
-                    <CButton
-                      color="danger"
-                      className="m-1"
-                      onClick={() => {
-                        if (window.confirm('Apakah Anda yakin ingin menhapus ini?')) {
-                          deleteJabatan(jabatan.id)
-                        }
-                      }}
-                    >
-                      <CIcon icon={cilTrash} />
-                    </CButton>
+                    </CButtonGroup>
                   </CTableDataCell>
                 </CTableRow>
               ))}

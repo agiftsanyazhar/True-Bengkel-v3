@@ -119,22 +119,16 @@ const Kendaraan = () => {
                     </div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <div className="d-flex justify-content-between text-nowrap">
-                      {kendaraan.tipe_motor.name}
-                    </div>
+                    <div>{kendaraan.tipe_motor.name}</div>
                     <div className="small text-body-secondary text-nowrap">
                       <span>{kendaraan.warna}</span>
                     </div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <div className="d-flex justify-content-between text-nowrap">
-                      {kendaraan.no_mesin}
-                    </div>
+                    <div>{kendaraan.no_mesin}</div>
                   </CTableDataCell>
                   <CTableDataCell>
-                    <div className="d-flex justify-content-between text-nowrap">
-                      {kendaraan.no_rangka}
-                    </div>
+                    <div>{kendaraan.no_rangka}</div>
                   </CTableDataCell>
                   <CTableDataCell>
                     <div>{kendaraan.tahun}</div>

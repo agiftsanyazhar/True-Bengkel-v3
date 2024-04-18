@@ -98,7 +98,7 @@ const Pegawai = () => {
       <CCard className="mb-4">
         <CCardHeader>
           <strong>Pegawai</strong>
-          <Link to="/master/user/pegawai/tambah">
+          <Link to="/admin/master/user/pegawai/tambah">
             <CButton color="primary" className="ms-3">
               <CIcon icon={cilPlus} />
             </CButton>

@@ -103,7 +103,9 @@ const DetilPesanan = () => {
       )}
       <CCard className="mb-4">
         <CCardHeader>
-          <strong>Detil Pesanan</strong>
+          <strong>
+            Detil Pesanan ({detilPesanans.length > 0 ? detilPesanans[0].order.order_code : ''})
+          </strong>
         </CCardHeader>
         <CCardBody>
           <CTable align="middle" className="mb-0 border" hover responsive>
@@ -112,6 +114,7 @@ const DetilPesanan = () => {
                 <CTableHeaderCell className="bg-body-tertiary">Spare Part</CTableHeaderCell>
                 <CTableHeaderCell className="bg-body-tertiary">Qty</CTableHeaderCell>
                 <CTableHeaderCell className="bg-body-tertiary">Harga Satuan</CTableHeaderCell>
+                <CTableHeaderCell className="bg-body-tertiary">Jumlah</CTableHeaderCell>
               </CTableRow>
             </CTableHead>
             <CTableBody>
@@ -126,8 +129,27 @@ const DetilPesanan = () => {
                   <CTableDataCell>
                     <div>{formatCurrency(detilPesanan.harga_satuan)}</div>
                   </CTableDataCell>
+                  <CTableDataCell>
+                    <div>{formatCurrency(detilPesanan.qty * detilPesanan.harga_satuan)}</div>
+                  </CTableDataCell>
                 </CTableRow>
               ))}
+              <CTableRow>
+                <CTableDataCell className="text-center" colSpan={3}>
+                  <div>Total</div>
+                </CTableDataCell>
+                <CTableDataCell>
+                  <div>
+                    {formatCurrency(
+                      detilPesanans.reduce(
+                        (total, detilPesanan) =>
+                          total + detilPesanan.qty * detilPesanan.harga_satuan,
+                        0,
+                      ),
+                    )}
+                  </div>
+                </CTableDataCell>
+              </CTableRow>
             </CTableBody>
           </CTable>
         </CCardBody>
